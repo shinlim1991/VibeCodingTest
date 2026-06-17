@@ -27,12 +27,152 @@ interface TapParticle {
   x: number;
   y: number;
   text: string;
+  type: "positive" | "negative";
 }
+
+interface QuizSlide {
+  statement: string;
+  isCorrect: boolean;
+}
+
+interface QuizQuestion {
+  category: string;
+  theme: string;
+  slides: QuizSlide[];
+}
+
+const QUIZ_DATA: QuizQuestion[] = [
+  {
+    category: "数学・算数 [Mathematics]",
+    theme: "数式＆ロジックの正誤をジャッジせよ！",
+    slides: [
+      { statement: "5 + 7 = 12", isCorrect: true },
+      { statement: "9 × 8 = 71", isCorrect: false },
+      { statement: "150 ÷ 3 = 50", isCorrect: true },
+      { statement: "3⁴ (3の4乗) = 64", isCorrect: false }
+    ]
+  },
+  {
+    category: "理科・科学 [Science]",
+    theme: "宇宙と大自然の真実をジャッジせよ！",
+    slides: [
+      { statement: "植物の光合成は、酸素を発生させる", isCorrect: true },
+      { statement: "水は氷になると体積が小さく（収縮）なる", isCorrect: false },
+      { statement: "光の進むスピードは、音よりも遅い", isCorrect: false },
+      { statement: "地球は太陽の周りを１年かけて公転している", isCorrect: true }
+    ]
+  },
+  {
+    category: "社会・地理 [Social Studies]",
+    theme: "歴史・文化・世界の常識をジャッジせよ！",
+    slides: [
+      { statement: "日本の都道府県の数は、全部で47である", isCorrect: true },
+      { statement: "アメリカ合衆国の首都はニューヨークである", isCorrect: false },
+      { statement: "赤道の付近は、１年中寒冷な気候である", isCorrect: false },
+      { statement: "フランスの首都はパリである", isCorrect: true }
+    ]
+  },
+  {
+    category: "国語・英語・文学 [Language Arts]",
+    theme: "ことわざと言葉の法則をジャッジせよ！",
+    slides: [
+      { statement: "英語：『Apple』の日本語訳は「りんご」", isCorrect: true },
+      { statement: "ことわざ：棚から「たい焼き」が落ちてくる", isCorrect: false },
+      { statement: "「二兎を追う者は一兎をも得ず」は、欲張ると失敗するという意味", isCorrect: true },
+      { statement: "「こんにちは」を漢字にすると「今日輪」である", isCorrect: false }
+    ]
+  },
+  {
+    category: "雑学・生活 [General Trivia]",
+    theme: "日常生活と身の回りの知恵をジャッジせよ！",
+    slides: [
+      { statement: "信号機の「緑色」は、法律上「青信号」と呼ぶ", isCorrect: true },
+      { statement: "かき氷のシロップは、実はすべて同じ味（香料だけ違う）である", isCorrect: true },
+      { statement: "救急車の電話番号は「110」番である", isCorrect: false },
+      { statement: "富士山は山梨県と静岡県の境界にまたがっている", isCorrect: true }
+    ]
+  },
+  {
+    category: "テクノロジー [Technology & IT]",
+    theme: "最新デジタル技術とPC知識をジャッジせよ！",
+    slides: [
+      { statement: "Wi-Fiの「Wi」は「Wireless」の略語である", isCorrect: false },
+      { statement: "1キロバイト (KB) は、正確には 1000バイトである", isCorrect: false },
+      { statement: "PDFは、Adobe社が開発したファイル形式である", isCorrect: true },
+      { statement: "AI（人工知能）の『GPT』の「P」は Pre-trained の略である", isCorrect: true }
+    ]
+  },
+  {
+    category: "スポーツ・健康 [Sports & Health]",
+    theme: "競技ルールと人体サイエンスをジャッジせよ！",
+    slides: [
+      { statement: "サッカーの1チームのピッチ上人数は11人である", isCorrect: true },
+      { statement: "大人の骨の数は、赤ちゃんの骨の数よりも多い", isCorrect: false },
+      { statement: "マラソンの正式な距離は 42.195 キロメートルである", isCorrect: true },
+      { statement: "人の体温は、通常、朝起きたときが最も高い", isCorrect: false }
+    ]
+  },
+  {
+    category: "世界のグルメ [Food & Gastronomy]",
+    theme: "美味しい料理と食文化のルーツをジャッジせよ！",
+    slides: [
+      { statement: "「カルボナーラ」はイタリア語で「炭焼き職人風」という意味である", isCorrect: true },
+      { statement: "ジャガイモは、根ではなく「地下の茎（塊茎）」が肥大化したものである", isCorrect: true },
+      { statement: "「ナポリタン」スパゲッティは、イタリア・ナポリが発祥である", isCorrect: false },
+      { statement: "クロワッサンはフランス発祥ではなく、オーストリア発祥と言われている", isCorrect: true }
+    ]
+  },
+  {
+    category: "地球・気象 [Earth & Weather]",
+    theme: "大気と異常気象の不思議をジャッジせよ！",
+    slides: [
+      { statement: "台風、ハリケーン、サイクロンは、どれも同じ熱帯低気圧の仲間である", isCorrect: true },
+      { statement: "雷が鳴っている時、高い木の下に避難するのは安全である", isCorrect: false },
+      { statement: "日本で観測される「黄色い砂（黄砂）」は、アメリカから飛来する", isCorrect: false },
+      { statement: "空気中で最も多い気体は、酸素ではなく窒素である", isCorrect: true }
+    ]
+  },
+  {
+    category: "音楽・アート [Music & Art]",
+    theme: "芸術家と名作メロディにまつわる謎をジャッジせよ！",
+    slides: [
+      { statement: "ベートーヴェンの有名な交響曲第5番の副題は「運命」である", isCorrect: true },
+      { statement: "ピアノの鍵盤は、白鍵と黒鍵を合わせて全部で100鍵ある", isCorrect: false },
+      { statement: "レオナルド・ダ・ヴィンチ의 代表作「モナ・リザ」には眉毛が描かれていない", isCorrect: true },
+      { statement: "ヴァイオリンの弦は、全部で5本ある", isCorrect: false }
+    ]
+  },
+  {
+    category: "動物・生き物 [Animals & Nature]",
+    theme: "地球に生きる奇妙な生物たちをジャッジせよ！",
+    slides: [
+      { statement: "カタツムリには歯が約1万本以上生えている", isCorrect: true },
+      { statement: "ダチョウの脳みそは、彼らの目玉よりも大きい", isCorrect: false },
+      { statement: "クジラは哺乳類ではなく、魚類の仲間である", isCorrect: false },
+      { statement: "コアラの主食であるユーカリの葉には、毒素が含まれている", isCorrect: true }
+    ]
+  },
+  {
+    category: "日本史・世界史 [History]",
+    theme: "激動の歴史と英雄たちの足跡をジャッジせよ！",
+    slides: [
+      { statement: "江戸幕府をひらいた初代将軍は徳川家康である", isCorrect: true },
+      { statement: "大化の改新（645年）の中心人物は中大兄皇子と中臣鎌足である", isCorrect: true },
+      { statement: "ナポレオンが生まれた島は、イギリス領のエルバ島である", isCorrect: false },
+      { statement: "日本の昭和時代は、全部で70年間続いた", isCorrect: false }
+    ]
+  }
+];
 
 export default function App() {
   const [gameState, setGameState] = useState<"idle" | "countdown" | "playing" | "battle_animation" | "result">("idle");
+  const [currentQuizzes, setCurrentQuizzes] = useState<QuizQuestion[]>(() => {
+    // Pick initial random 4 categories
+    const shuffled = [...QUIZ_DATA].sort(() => Math.random() - 0.5);
+    return shuffled.slice(0, 4);
+  });
   const [tapsCount, setTapsCount] = useState<number>(0);
-  const [timeLeft, setTimeLeft] = useState<number>(10.0);
+  const [timeLeft, setTimeLeft] = useState<number>(60.0);
   const [countdown, setCountdown] = useState<number>(3);
   const [highScore, setHighScore] = useState<number>(() => {
     try {
@@ -48,7 +188,7 @@ export default function App() {
   // Cheat macro status state
   const [isMacroActive, setIsMacroActive] = useState<boolean>(false);
 
-  const historyRef = useRef<number[]>(new Array(10).fill(0));
+  const historyRef = useRef<number[]>(new Array(60).fill(0));
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const countdownRef = useRef<NodeJS.Timeout | null>(null);
   const latestTapsCount = useRef<number>(0);
@@ -67,7 +207,7 @@ export default function App() {
   }, [gameState]);
 
   // Track dynamic time left via a ref to completely prevent stale closure ticks
-  const timeLeftRef = useRef<number>(10.0);
+  const timeLeftRef = useRef<number>(60.0);
   useEffect(() => {
     timeLeftRef.current = timeLeft;
   }, [timeLeft]);
@@ -79,18 +219,41 @@ export default function App() {
   const triggerTap = () => {
     if (gameState !== "playing" || timeLeftRef.current <= 0) return;
 
-    sound.playTap(latestTapsCount.current / 100);
+    // Calculate current slide parameters based on elapsed time (elapsed = 60 - timeLeftRef.current)
+    const elapsed = 60 - timeLeftRef.current;
+    const currentQuestionIndex = Math.min(3, Math.max(0, Math.floor(elapsed / 15)));
+    const currentQuestionElapsed = elapsed % 15;
+    const currentSlideIndex = Math.min(3, Math.max(0, Math.floor(currentQuestionElapsed / 3.75)));
+    
+    const currentQuestion = currentQuizzes[currentQuestionIndex] || currentQuizzes[3];
+    const currentSlide = currentQuestion.slides[currentSlideIndex] || currentQuestion.slides[3];
+    const isCorrect = currentSlide.isCorrect;
 
-    setTapsCount((prev) => {
-      const newCount = prev + 1;
-      
-      // Map elapsed seconds to history slots (0-9)
-      const elapsed = 10 - timeLeftRef.current;
-      const secondIndex = Math.min(9, Math.floor(elapsed));
-      historyRef.current[secondIndex] = (historyRef.current[secondIndex] || 0) + 1;
-      
-      return newCount;
-    });
+    let particleText = "+1";
+    let particleType: "positive" | "negative" = "positive";
+
+    if (isCorrect) {
+      sound.playTap(latestTapsCount.current / 120);
+      setTapsCount((prev) => {
+        const newCount = prev + 1;
+        const secondIndex = Math.min(59, Math.floor(elapsed));
+        historyRef.current[secondIndex] = (historyRef.current[secondIndex] || 0) + 1;
+        return newCount;
+      });
+      particleText = "+1";
+      particleType = "positive";
+    } else {
+      sound.playFizzle(); // Play penalty sound for tapping on wrong / fake statement
+      setTapsCount((prev) => {
+        const newCount = Math.max(0, prev - 1);
+        // Decrease history speed score slightly
+        const secondIndex = Math.min(59, Math.floor(elapsed));
+        historyRef.current[secondIndex] = Math.max(0, (historyRef.current[secondIndex] || 0) - 1);
+         return newCount;
+      });
+      particleText = "-1";
+      particleType = "negative";
+    }
 
     // Create tap visual floating particle
     const randomAngle = Math.random() * Math.PI * 2;
@@ -102,7 +265,8 @@ export default function App() {
       id: particlesIdRef.current++,
       x: pX,
       y: pY,
-      text: `+1`
+      text: particleText,
+      type: particleType
     };
 
     setParticles((prev) => [...prev, newParticle]);
@@ -197,10 +361,15 @@ export default function App() {
   const startGame = () => {
     // Reset configurations
     setTapsCount(0);
-    setTimeLeft(10.0);
+    setTimeLeft(60.0);
     setCountdown(3);
     setBattleStep(0);
-    historyRef.current = new Array(10).fill(0);
+    historyRef.current = new Array(60).fill(0);
+
+    // Shuffle and pick 4 random categories on every start / retry
+    const shuffled = [...QUIZ_DATA].sort(() => Math.random() - 0.5);
+    setCurrentQuizzes(shuffled.slice(0, 4));
+
     setGameState("countdown");
 
     // Clear animations or existing timeouts
@@ -228,15 +397,15 @@ export default function App() {
     }, 1000);
   };
 
-  // 10-Second Countdown Timer Engine using Epoch offset
+  // 60-Second Countdown Timer Engine using Epoch offset
   const startTimer = () => {
     const startTime = Date.now();
     timerRef.current = setInterval(() => {
       const elapsed = Date.now() - startTime;
-      const remainingSecs = Math.max(0, 10 - elapsed / 1000);
+      const remainingSecs = Math.max(0, 60 - elapsed / 1000);
       setTimeLeft(parseFloat(remainingSecs.toFixed(2)));
 
-      if (elapsed >= 10000) {
+      if (elapsed >= 60000) {
         if (timerRef.current) clearInterval(timerRef.current);
         triggerBattlePhase();
       }
@@ -249,7 +418,7 @@ export default function App() {
     setBattleStep(0); // Attack launch
 
     const finalScore = latestTapsCount.current;
-    const passed = finalScore >= 100;
+    const passed = finalScore >= 50;
 
     // STAGED TIMED OUT ANIMATION STAGES for battle cinematic
     if (passed) {
@@ -338,7 +507,7 @@ export default function App() {
         <div className="flex items-center gap-6">
           <div className="text-center hidden md:block">
             <div className="text-[10px] text-slate-500 uppercase font-bold mb-0.5">Time Limit</div>
-            <div className="text-lg font-mono text-cyan-400 font-bold tracking-widest">10.00s</div>
+            <div className="text-lg font-mono text-cyan-400 font-bold tracking-widest">60.00s</div>
           </div>
 
           <div className="bg-[#0a0f18] border border-slate-850 rounded-lg px-3 py-1 text-xs font-mono flex items-center gap-2">
@@ -383,13 +552,14 @@ export default function App() {
               </div>
 
               <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-white mb-2">
-                10秒間スペースキー連打バトル
+                学力判定！60秒連打クイズバトル
               </h2>
               <p className="text-slate-300 text-sm md:text-base max-w-md mx-auto leading-relaxed mb-6">
-                10秒間でスペースキーを限界まで叩け！
+                日常や学校で習うクイズが <span className="text-cyan-400 font-bold">計４問</span> (各15秒) 出題される！
                 <br />
-                目標は <span className="text-blue-400 font-bold decoration-solid underline decoration-2 underline-offset-4">100回</span>。
-                チャージしたパワーで、巨大エネミーボスを一撃で駆逐せよ！
+                提示される文章が<span className="text-emerald-400 font-bold">「正しい」時だけスペースキーを猛連打</span>せよ！
+                <br />
+                <span className="text-rose-400 font-bold">間違っている時に叩くと減点（マイナス）</span>されるぞ！
               </p>
 
               {/* Targets and Rules Cards */}
@@ -399,9 +569,9 @@ export default function App() {
                   <div>
                     <h4 className="text-xs font-bold uppercase tracking-wider text-slate-300">成功条件: 【勝者】</h4>
                     <p className="text-xs text-slate-400 mt-1 font-mono">
-                      10秒間で100回以上。
+                      合計50回以上の正解連打。
                       <br />
-                      極太レーザー連撃でボスを消沈
+                      正解中のみ連打を繋いでブースト！
                     </p>
                   </div>
                 </div>
@@ -409,11 +579,11 @@ export default function App() {
                 <div className="bg-[#05070a]/80 rounded-xl border border-slate-850 p-4 flex items-start gap-3">
                   <XCircle className="w-5 h-5 text-rose-500 shrink-0 mt-0.5" />
                   <div>
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-slate-300">失敗条件: 【敗北】</h4>
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-slate-300">失敗の罠: 【敗北】</h4>
                     <p className="text-xs text-slate-400 mt-1 font-mono">
-                      10秒間で99回以下。
+                      誤答ステートメントを連打すると
                       <br />
-                      パワーが暴走、ボスの反撃に沈む
+                      凄まじいペナルティ減点が発生！
                     </p>
                   </div>
                 </div>
@@ -480,16 +650,25 @@ export default function App() {
           )}
 
           {/* STATE 3: ACTIVE PLAYING GAMEPLAY ARENA */}
-          {gameState === "playing" && (
-            <motion.div
-              key="screen-playing"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="w-full h-full flex flex-col items-center justify-between"
-            >
-              {/* TOP PLAY STATS BAR */}
-              <div className="w-full flex items-center justify-between mb-4 bg-slate-900/40 border border-slate-800/80 rounded-xl px-4 py-3">
+          {gameState === "playing" && (() => {
+            const elapsed = 60 - timeLeft;
+            const currentQuestionIndex = Math.min(3, Math.max(0, Math.floor(elapsed / 15)));
+            const currentQuestionElapsed = elapsed % 15;
+            const currentSlideIndex = Math.min(3, Math.max(0, Math.floor(currentQuestionElapsed / 3.75)));
+            
+            const currentQuestion = currentQuizzes[currentQuestionIndex] || currentQuizzes[3];
+            const currentSlide = currentQuestion.slides[currentSlideIndex] || currentQuestion.slides[3];
+
+            return (
+              <motion.div
+                key="screen-playing"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="w-full h-full flex flex-col items-center justify-between"
+              >
+                {/* TOP PLAY STATS BAR */}
+                <div className="w-full flex items-center justify-between mb-4 bg-slate-900/40 border border-slate-800/80 rounded-xl px-4 py-3">
                 <div className="flex flex-col">
                   <span className="text-[10px] text-slate-500 font-mono leading-none">TIME REMAINING</span>
                   <span className="text-2xl md:text-3xl font-black font-mono text-cyan-300 tracking-tight mt-1">
@@ -547,6 +726,57 @@ export default function App() {
                 </div>
               </div>
 
+              {/* LIVE QUIZ BOARD ELECTRON PANEL */}
+              <div id="live-quiz-board-panel" className="w-full bg-[#070b12] rounded-2xl border border-slate-800 p-4 mb-2 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-4">
+                {/* Question Index Badge */}
+                <div className="flex flex-col items-center justify-center shrink-0">
+                  <div className="text-[9px] uppercase tracking-wider text-slate-500 font-mono font-bold">Question</div>
+                  <div className="text-3xl font-black text-cyan-400 font-mono italic">0{currentQuestionIndex + 1}<span className="text-xs text-slate-500 font-normal">/04</span></div>
+                  <div className="text-[10px] text-slate-400 font-mono mt-0.5 px-2 py-0.5 bg-slate-900 border border-slate-800 rounded">
+                    {currentQuestion.category}
+                  </div>
+                </div>
+
+                {/* Outer Glowing boundary representing slide statement status */}
+                <div className="flex-1 w-full p-4 rounded-xl border-2 border-slate-700 bg-slate-900/40 shadow-[inset_0_0_15px_rgba(148,163,184,0.1)] relative overflow-hidden transition-all duration-300">
+                  {/* Micro slide status light indicator */}
+                  <div className="flex justify-between items-center mb-1">
+                    <span className="text-[10px] tracking-wider text-slate-400 font-semibold uppercase">
+                      {currentQuestion.theme}
+                    </span>
+                    <span className="text-[10px] tracking-wider font-mono font-bold text-cyan-400">
+                      セクション内 {currentSlideIndex + 1}問目 / 4
+                    </span>
+                  </div>
+
+                  {/* Statement board display */}
+                  <div className="text-center py-2 md:py-3 select-none">
+                    <AnimatePresence mode="popLayout">
+                      <motion.p
+                        key={currentSlide.statement}
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 1.05 }}
+                        className="text-lg md:text-2xl font-black text-white tracking-wide"
+                      >
+                        {currentSlide.statement}
+                      </motion.p>
+                    </AnimatePresence>
+                  </div>
+
+                  {/* Small slide timebar */}
+                  <div className="absolute bottom-0 inset-x-0 h-1 bg-slate-900 overflow-hidden">
+                    <motion.div
+                      key={currentSlide.statement}
+                      className="h-full bg-cyan-500"
+                      initial={{ width: "100%" }}
+                      animate={{ width: "0%" }}
+                      transition={{ duration: 3.75, ease: "linear" }}
+                    />
+                  </div>
+                </div>
+              </div>
+
               {/* BATTLEGROUND DUEL STAGE */}
               <div className="w-full bg-[#0a0f18]/80 rounded-2xl border border-slate-800 p-6 flex flex-col items-center justify-center min-h-[220px] relative overflow-hidden my-4 w-full">
                 {/* Horizontal Arena division laser wire grid */}
@@ -583,7 +813,7 @@ export default function App() {
                             style={{ left: `50%`, top: `40%` }}
                             initial={{ opacity: 1, scale: 0.8, x: p.x, y: p.y }}
                             animate={{ opacity: 0, y: p.y - 60, scale: 1.3 }}
-                            className="absolute font-black text-lg md:text-xl drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-cyan-300 font-mono select-none"
+                            className={`absolute font-black text-lg md:text-xl drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] font-mono select-none ${p.type === "positive" ? "text-cyan-300" : "text-rose-500"}`}
                           >
                             {p.text}
                           </motion.span>
@@ -643,12 +873,13 @@ export default function App() {
                   
                   {/* High visual speed ticker */}
                   <div className="absolute bottom-1 right-2 text-[9px] text-slate-600 font-mono">
-                    TPS: {((historyRef.current[Math.max(0, Math.floor(10 - timeLeft) - 1)] || 0)).toFixed(0)} / s
+                    TPS: {((historyRef.current[Math.max(0, Math.floor(32 - timeLeft) - 1)] || 0)).toFixed(0)} / s
                   </div>
                 </motion.button>
               </div>
             </motion.div>
-          )}
+            );
+          })()}
 
           {/* STATE 4: CINEMATIC BATTLE RESOLUTION SCREEN */}
           {gameState === "battle_animation" && (

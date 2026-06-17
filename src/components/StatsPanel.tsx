@@ -8,9 +8,10 @@ interface StatsPanelProps {
 }
 
 export default function StatsPanel({ tapHistory, totalTaps, onRetry }: StatsPanelProps) {
-  const goal = 100;
+  const goal = 50;
   const passed = totalTaps >= goal;
-  const avgSpeed = (totalTaps / 10).toFixed(1);
+  const duration = tapHistory.length || 60;
+  const avgSpeed = (totalTaps / duration).toFixed(1);
   const peakSpeed = Math.max(...tapHistory, 0);
   
   // Calculate margins and ratios
@@ -26,7 +27,8 @@ export default function StatsPanel({ tapHistory, totalTaps, onRetry }: StatsPane
   const maxScaleVal = Math.ceil(maxValInHistory / 5) * 5; // Round to nearest 5
 
   const points = tapHistory.map((val, i) => {
-    const x = paddingX + (i * (chartWidth - paddingX * 2)) / 9;
+    const divisor = tapHistory.length > 1 ? tapHistory.length - 1 : 1;
+    const x = paddingX + (i * (chartWidth - paddingX * 2)) / divisor;
     const y = chartHeight - paddingY - (val / maxScaleVal) * (chartHeight - paddingY * 2);
     return { x, y, val };
   });
@@ -35,7 +37,7 @@ export default function StatsPanel({ tapHistory, totalTaps, onRetry }: StatsPane
   const areaD = `${pathD} L ${points[points.length - 1].x} ${chartHeight - paddingY} L ${points[0].x} ${chartHeight - paddingY} Z`;
 
   // Goal indicator line y-position
-  const goalSpeedPerSec = 10; // 10 taps/sec = 100 taps total
+  const goalSpeedPerSec = 0.83; // Adjusted target TPS for the 60s quiz duration to hit 50 taps
   const goalY =
     chartHeight - paddingY - (goalSpeedPerSec / maxScaleVal) * (chartHeight - paddingY * 2);
 
@@ -77,7 +79,7 @@ export default function StatsPanel({ tapHistory, totalTaps, onRetry }: StatsPane
         <h2 className="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-teal-400 via-emerald-400 to-indigo-400 bg-clip-text text-transparent">
           BATTLE RESULTS
         </h2>
-        <p className="text-slate-400 text-sm mt-1">10秒間のスペース連打パーソナルリポート</p>
+        <p className="text-slate-400 text-sm mt-1">60秒間（4問×15秒）のクイズ連打パーソナルリポート</p>
       </div>
 
       {/* Grid of Key Numerical Stats */}
@@ -93,7 +95,7 @@ export default function StatsPanel({ tapHistory, totalTaps, onRetry }: StatsPane
           </div>
           <div className="mt-2 flex items-baseline gap-1.5">
             <span className="text-4xl font-black text-white font-mono">{totalTaps}</span>
-            <span className="text-xs text-slate-400">/ 100 回</span>
+            <span className="text-xs text-slate-400">/ 50 回</span>
           </div>
           <div className="mt-2 w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
             <div
@@ -123,8 +125,8 @@ export default function StatsPanel({ tapHistory, totalTaps, onRetry }: StatsPane
           </div>
           <p className="text-[10px] text-slate-400 mt-1">
             {passed
-              ? "目標基準 (10.0回/秒) をクリア！"
-              : `秒間あと ${(10 - parseFloat(avgSpeed)).toFixed(1)}回 叩ければクリア...`}
+              ? "目標基準 (平均 0.8回/秒) をクリア！"
+              : `秒間あと ${(0.8 - parseFloat(avgSpeed)).toFixed(1)}回 叩ければクリア...`}
           </p>
         </motion.div>
 
@@ -245,11 +247,15 @@ export default function StatsPanel({ tapHistory, totalTaps, onRetry }: StatsPane
             </text>
 
             {/* Grid X-axis Labels */}
-            {points.map((p, i) => (
-              <text key={i} x={p.x} y={chartHeight - paddingY + 14} textAnchor="middle" className="fill-slate-400">
-                {i + 1}s
-              </text>
-            ))}
+            {points.map((p, i) => {
+              // Only draw label every 10 seconds to maintain clean typography
+              if (i % 10 !== 0 && i !== points.length - 1) return null;
+              return (
+                <text key={i} x={p.x} y={chartHeight - paddingY + 14} textAnchor="middle" className="fill-slate-400 font-mono text-[8px]">
+                  {i}s
+                </text>
+              );
+            })}
 
             <defs>
               <linearGradient id="chartGradient" x1="0%" y1="0%" x2="0%" y2="100%">
