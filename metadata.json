@@ -1,0 +1,6 @@
+{
+  "name": "10-Second Spacebar Challenge",
+  "description": "10秒間にスペースキーを100回連打して、パワーをチャージして敵を倒す連打アクションゲーム！",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
