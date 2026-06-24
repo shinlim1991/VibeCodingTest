@@ -125,8 +125,8 @@ export default function StatsPanel({ tapHistory, totalTaps, onRetry }: StatsPane
           </div>
           <p className="text-[10px] text-slate-400 mt-1">
             {passed
-              ? "目標基準 (平均 0.8回/秒) をクリア！"
-              : `秒間あと ${(0.8 - parseFloat(avgSpeed)).toFixed(1)}回 叩ければクリア...`}
+              ? "目標基準 (平均 0.5回/秒) をクリア！"
+              : `秒間あと ${(0.5 - parseFloat(avgSpeed)).toFixed(1)}回 叩ければクリア...`}
           </p>
         </motion.div>
 

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import {
   Volume2,
@@ -49,7 +49,13 @@ const QUIZ_DATA: QuizQuestion[] = [
       { statement: "5 + 7 = 12", isCorrect: true },
       { statement: "9 × 8 = 71", isCorrect: false },
       { statement: "150 ÷ 3 = 50", isCorrect: true },
-      { statement: "3⁴ (3の4乗) = 64", isCorrect: false }
+      { statement: "3⁴ (3の4乗) = 64", isCorrect: false },
+      { statement: "1から10までの整数をすべて足すと「55」になる", isCorrect: true },
+      { statement: "三角形の内角の和は180度である", isCorrect: true },
+      { statement: "偶数と奇数を足すと、必ず「偶数」になる", isCorrect: false },
+      { statement: "0は「正の整数（自然数）」に含まれる", isCorrect: false },
+      { statement: "半径5cmの円の直径は10cmである", isCorrect: true },
+      { statement: "1打（ダース）は全部で12個である", isCorrect: true }
     ]
   },
   {
@@ -59,7 +65,13 @@ const QUIZ_DATA: QuizQuestion[] = [
       { statement: "植物の光合成は、酸素を発生させる", isCorrect: true },
       { statement: "水は氷になると体積が小さく（収縮）なる", isCorrect: false },
       { statement: "光の進むスピードは、音よりも遅い", isCorrect: false },
-      { statement: "地球は太陽の周りを１年かけて公転している", isCorrect: true }
+      { statement: "地球は太陽の周りを１年かけて公転している", isCorrect: true },
+      { statement: "金属は一般的に、熱や電気を通しやすい", isCorrect: true },
+      { statement: "昆虫の体は「頭部・胸部・腹部」の3つに分かれている", isCorrect: true },
+      { statement: "太陽系の惑星の中で、最も大きいのは「火星」である", isCorrect: false },
+      { statement: "水を加熱して沸騰させると、水蒸気という「気体」に変わる", isCorrect: true },
+      { statement: "アルカリ性の液体に赤色リトマス紙をつけると、青色に変わる", isCorrect: true },
+      { statement: "月は自ら光を放って輝いている", isCorrect: false }
     ]
   },
   {
@@ -69,7 +81,13 @@ const QUIZ_DATA: QuizQuestion[] = [
       { statement: "日本の都道府県の数は、全部で47である", isCorrect: true },
       { statement: "アメリカ合衆国の首都はニューヨークである", isCorrect: false },
       { statement: "赤道の付近は、１年中寒冷な気候である", isCorrect: false },
-      { statement: "フランスの首都はパリである", isCorrect: true }
+      { statement: "フランスの首都はパリである", isCorrect: true },
+      { statement: "日本国憲法の三大原則は「国民主権」「基本的人権の尊重」「平和主義」である", isCorrect: true },
+      { statement: "地球上の陸地と海洋の比率は、ほぼ「陸地7：海洋3」である", isCorrect: false },
+      { statement: "イギリス（英国）は島国である", isCorrect: true },
+      { statement: "日本で最も面積が広い都道府県は「北海道」である", isCorrect: true },
+      { statement: "オーストラリアの首都はシドニーである", isCorrect: false },
+      { statement: "本初子午線（経度0度）が通る都市は、イギリスのロンドンである", isCorrect: true }
     ]
   },
   {
@@ -79,7 +97,13 @@ const QUIZ_DATA: QuizQuestion[] = [
       { statement: "英語：『Apple』の日本語訳は「りんご」", isCorrect: true },
       { statement: "ことわざ：棚から「たい焼き」が落ちてくる", isCorrect: false },
       { statement: "「二兎を追う者は一兎をも得ず」は、欲張ると失敗するという意味", isCorrect: true },
-      { statement: "「こんにちは」を漢字にすると「今日輪」である", isCorrect: false }
+      { statement: "「こんにちは」を漢字にすると「今日輪」である", isCorrect: false },
+      { statement: "夏目漱石の代表作には『吾輩は猫である』がある", isCorrect: true },
+      { statement: "英語のアルファベットは全部で26文字である", isCorrect: true },
+      { statement: "「情けは人のためならず」は、人に親切にすると自分に良いことが返ってくるという意味である", isCorrect: true },
+      { statement: "漢字の「右」と「左」は、書き順の1画目が同じである", isCorrect: false },
+      { statement: "「 optical 」は「光学の、視覚の」という意味である", isCorrect: true },
+      { statement: "太宰治の『走れメロス』で、メロスが身代わりとして残した友人の名は「セリヌンティウス」である", isCorrect: true }
     ]
   },
   {
@@ -89,17 +113,29 @@ const QUIZ_DATA: QuizQuestion[] = [
       { statement: "信号機の「緑色」は、法律上「青信号」と呼ぶ", isCorrect: true },
       { statement: "かき氷のシロップは、実はすべて同じ味（香料だけ違う）である", isCorrect: true },
       { statement: "救急車の電話番号は「110」番である", isCorrect: false },
-      { statement: "富士山は山梨県と静岡県の境界にまたがっている", isCorrect: true }
+      { statement: "富士山は山梨県と静岡県の境界にまたがっている", isCorrect: true },
+      { statement: "千円札の肖像に描かれた野口英世は、細菌学者である", isCorrect: true },
+      { statement: "非常口の緑色のマークは、暗闇でも一番目立つ色として法律で決められている", isCorrect: true },
+      { statement: "日本の郵便番号はすべて「5桁」で構成されている", isCorrect: false },
+      { statement: "炭酸水に割り箸を入れると、泡が激しく発生する", isCorrect: true },
+      { statement: "オセロゲームの黒石と白石は、必ず黒が先手（先攻）である", isCorrect: true },
+      { statement: "シャンプーボトルの側面にギザギザがあるのは、リンスと区別するためである", isCorrect: true }
     ]
   },
   {
     category: "テクノロジー [Technology & IT]",
     theme: "最新デジタル技術とPC知識をジャッジせよ！",
     slides: [
-      { statement: "Wi-Fiの「Wi」は「Wireless」の略語である", isCorrect: false },
+      { statement: "Wi-Fi of「Wi」は「Wireless」の略語である", isCorrect: false },
       { statement: "1キロバイト (KB) は、正確には 1000バイトである", isCorrect: false },
       { statement: "PDFは、Adobe社が開発したファイル形式である", isCorrect: true },
-      { statement: "AI（人工知能）の『GPT』の「P」は Pre-trained の略である", isCorrect: true }
+      { statement: "AI（人工知能）の『GPT』の「P」は Pre-trained の略である", isCorrect: true },
+      { statement: "キーボードの「F」と「J」キーには、ホームポジション用の突起がある", isCorrect: true },
+      { statement: "インターネットのアドレス「URL」の「L」は「Link」の略である", isCorrect: false },
+      { statement: "コンピュータのCPUは「中央演算処理装置」と呼ばれる", isCorrect: true },
+      { statement: "Bluetoothの「Blue」は、実在した青歯王（ハラルド・ブロタン）の名前に由来する", isCorrect: true },
+      { statement: "スマートフォンの「アプリ」は、「アプリケーション」の略称である", isCorrect: true },
+      { statement: "QRコードの「QR」は「Quick Response」の略である", isCorrect: true }
     ]
   },
   {
@@ -109,7 +145,13 @@ const QUIZ_DATA: QuizQuestion[] = [
       { statement: "サッカーの1チームのピッチ上人数は11人である", isCorrect: true },
       { statement: "大人の骨の数は、赤ちゃんの骨の数よりも多い", isCorrect: false },
       { statement: "マラソンの正式な距離は 42.195 キロメートルである", isCorrect: true },
-      { statement: "人の体温は、通常、朝起きたときが最も高い", isCorrect: false }
+      { statement: "人の体温は、通常、朝起きたときが最も高い", isCorrect: false },
+      { statement: "卓球（ピンポン）のサーブは、自分のコートに1回バウンドさせてから相手コートに入れる", isCorrect: true },
+      { statement: "血液の赤い色は、赤血球に含まれる「ヘモグロビン」によるものである", isCorrect: true },
+      { statement: "野球で「DH」とは、守備専門の選手（守備固め）のことである", isCorrect: false },
+      { statement: "人間の五感の中で、最も早く疲労を感じるのは「嗅覚（きゅうかく）」である", isCorrect: true },
+      { statement: "筋肉痛は、運動後すぐに発生するものしか存在しない", isCorrect: false },
+      { statement: "バスケットボールで3ポイントシュートが決まると、チームに3点が入る", isCorrect: true }
     ]
   },
   {
@@ -119,17 +161,29 @@ const QUIZ_DATA: QuizQuestion[] = [
       { statement: "「カルボナーラ」はイタリア語で「炭焼き職人風」という意味である", isCorrect: true },
       { statement: "ジャガイモは、根ではなく「地下の茎（塊茎）」が肥大化したものである", isCorrect: true },
       { statement: "「ナポリタン」スパゲッティは、イタリア・ナポリが発祥である", isCorrect: false },
-      { statement: "クロワッサンはフランス発祥ではなく、オーストリア発祥と言われている", isCorrect: true }
+      { statement: "クロワッサンはフランス発祥ではなく、オーストリア発祥と言われている", isCorrect: true },
+      { statement: "トマトはもともと、南アメリカのアンデス山脈が原産である", isCorrect: true },
+      { statement: "コーヒー豆は、果実の「種（たね）」の部分である", isCorrect: true },
+      { statement: "中華料理の「麻婆豆腐」を考案したとされる人物は、顔にあばた（麻子）があったお婆さんである", isCorrect: true },
+      { statement: "マヨネーズの主原料は、卵白（白身）と酢と油である", isCorrect: false },
+      { statement: "お寿司の「ガリ」は、大根を甘酢に漬けたものである", isCorrect: false },
+      { statement: "世界三大珍味といえば「キャビア」「フォアグラ」「トリュフ」である", isCorrect: true }
     ]
   },
   {
     category: "地球・気象 [Earth & Weather]",
-    theme: "大気と異常気象の不思議をジャッジせよ！",
+    theme: "大気と異常気象 of 不思議をジャッジせよ！",
     slides: [
       { statement: "台風、ハリケーン、サイクロンは、どれも同じ熱帯低気圧の仲間である", isCorrect: true },
       { statement: "雷が鳴っている時、高い木の下に避難するのは安全である", isCorrect: false },
       { statement: "日本で観測される「黄色い砂（黄砂）」は、アメリカから飛来する", isCorrect: false },
-      { statement: "空気中で最も多い気体は、酸素ではなく窒素である", isCorrect: true }
+      { statement: "空気中で最も多い気体は、酸素ではなく窒素である", isCorrect: true },
+      { statement: "地球上で最も深い海溝は、太平洋にある「マリアナ海溝」である", isCorrect: true },
+      { statement: "砂漠とは、年間を通じて雨が全く降らない場所のことだけを指す", isCorrect: false },
+      { statement: "虹の色の並び順は、一番外側が「赤」で、一番内側が「紫」である", isCorrect: true },
+      { statement: "冬に雪が降るのは、雲の中の温度が氷点下（0度以下）だからである", isCorrect: true },
+      { statement: "雲は、水蒸気がそのまま目に見えるようになったものである", isCorrect: false },
+      { statement: "日本の「春分の日」と「秋分の日」は、昼と夜の長さがほぼ同じになる", isCorrect: true }
     ]
   },
   {
@@ -138,8 +192,14 @@ const QUIZ_DATA: QuizQuestion[] = [
     slides: [
       { statement: "ベートーヴェンの有名な交響曲第5番の副題は「運命」である", isCorrect: true },
       { statement: "ピアノの鍵盤は、白鍵と黒鍵を合わせて全部で100鍵ある", isCorrect: false },
-      { statement: "レオナルド・ダ・ヴィンチ의 代表作「モナ・リザ」には眉毛が描かれていない", isCorrect: true },
-      { statement: "ヴァイオリンの弦は、全部で5本ある", isCorrect: false }
+      { statement: "レオナルド・ダ・ヴィンチの代表作「モナ・リザ」には眉毛が描かれていない", isCorrect: true },
+      { statement: "ヴァイオリンの弦は、全部で5本ある", isCorrect: false },
+      { statement: "世界三大リスニング（クラシック三大B）とは、バッハ、ベートーヴェン、ブラームスである", isCorrect: true },
+      { statement: "モーツァルトはオーストリア出身の作曲家である", isCorrect: true },
+      { statement: "ゴッホの有名な絵画『ひまわり』は、生涯で1枚しか描かれなかった", isCorrect: false },
+      { statement: "ピカソのフルネームは、非常に長い（10語以上ある）", isCorrect: true },
+      { statement: "「ド・レ・ミ」の音名は、イタリア語が発祥である", isCorrect: true },
+      { statement: "彫刻『考える人』で有名なフランスの彫刻家は「ロダン」である", isCorrect: true }
     ]
   },
   {
@@ -149,7 +209,13 @@ const QUIZ_DATA: QuizQuestion[] = [
       { statement: "カタツムリには歯が約1万本以上生えている", isCorrect: true },
       { statement: "ダチョウの脳みそは、彼らの目玉よりも大きい", isCorrect: false },
       { statement: "クジラは哺乳類ではなく、魚類の仲間である", isCorrect: false },
-      { statement: "コアラの主食であるユーカリの葉には、毒素が含まれている", isCorrect: true }
+      { statement: "コアラの主食であるユーカリの葉には、毒素が含まれている", isCorrect: true },
+      { statement: "ペンギンは南半球だけでなく、北極（北半球の極地）にも野生の個体が生息している", isCorrect: false },
+      { statement: "カメレオンの皮膚の色が変わるのは、主に周囲の景色に擬態するためだけである", isCorrect: false },
+      { statement: "チーターの走るスピードは、時速100キロメートルを超えることがある", isCorrect: true },
+      { statement: "タコには心臓が3つ、脳が9つある", isCorrect: true },
+      { statement: "キリンの首の骨（頚椎）の数は、人間（7個）よりも多い", isCorrect: false },
+      { statement: "クラゲの体の約95％以上は、水分でできている", isCorrect: true }
     ]
   },
   {
@@ -159,17 +225,41 @@ const QUIZ_DATA: QuizQuestion[] = [
       { statement: "江戸幕府をひらいた初代将軍は徳川家康である", isCorrect: true },
       { statement: "大化の改新（645年）の中心人物は中大兄皇子と中臣鎌足である", isCorrect: true },
       { statement: "ナポレオンが生まれた島は、イギリス領のエルバ島である", isCorrect: false },
-      { statement: "日本の昭和時代は、全部で70年間続いた", isCorrect: false }
+      { statement: "日本の昭和時代は、全部で70年間続いた", isCorrect: false },
+      { statement: "邪馬台国の女王「卑弥呼」が中国の魏に使いを送った歴史がある", isCorrect: true },
+      { statement: "ピラミッドを建設した古代エジプトの人々は、労働者であり奴隷ではなかったという説が有力である", isCorrect: true },
+      { statement: "コロンブスがアメリカ大陸に到達した年は「1492年」である", isCorrect: true },
+      { statement: "フランス革命で処刑されたフランス国王は「ルイ14世」である", isCorrect: false },
+      { statement: "日本の初代内閣総理大臣は「伊藤博文」である", isCorrect: true },
+      { statement: "ベルリンの壁が崩壊したのは「1989年」である", isCorrect: true }
     ]
   }
 ];
 
+function shuffleArray<T>(array: T[]): T[] {
+  const arr = [...array];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+const getRandomQuizzes = (): QuizQuestion[] => {
+  const shuffledCategories = shuffleArray(QUIZ_DATA);
+  return shuffledCategories.slice(0, 4).map((q) => {
+    const shuffledSlides = shuffleArray(q.slides);
+    return {
+      ...q,
+      slides: shuffledSlides.slice(0, 4),
+    };
+  });
+};
+
 export default function App() {
   const [gameState, setGameState] = useState<"idle" | "countdown" | "playing" | "battle_animation" | "result">("idle");
   const [currentQuizzes, setCurrentQuizzes] = useState<QuizQuestion[]>(() => {
-    // Pick initial random 4 categories
-    const shuffled = [...QUIZ_DATA].sort(() => Math.random() - 0.5);
-    return shuffled.slice(0, 4);
+    return getRandomQuizzes();
   });
   const [tapsCount, setTapsCount] = useState<number>(0);
   const [timeLeft, setTimeLeft] = useState<number>(60.0);
@@ -187,6 +277,43 @@ export default function App() {
   
   // Cheat macro status state
   const [isMacroActive, setIsMacroActive] = useState<boolean>(false);
+
+  const [playerName, setPlayerName] = useState<string>(() => {
+    try {
+      const stored = localStorage.getItem("spacebar_player_name");
+      return stored !== null ? stored : "Player";
+    } catch {
+      return "Player";
+    }
+  });
+
+  const [bossName, setBossName] = useState<string>(() => {
+    try {
+      const stored = localStorage.getItem("spacebar_boss_name");
+      return stored !== null ? stored : "BOSS";
+    } catch {
+      return "BOSS";
+    }
+  });
+
+  const handlePlayerNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value;
+    setPlayerName(val);
+    try {
+      localStorage.setItem("spacebar_player_name", val);
+    } catch {}
+  };
+
+  const handleBossNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value;
+    setBossName(val);
+    try {
+      localStorage.setItem("spacebar_boss_name", val);
+    } catch {}
+  };
+
+  const finalPlayerName = playerName.trim() || "Player";
+  const finalBossName = bossName.trim() || "BOSS";
 
   const historyRef = useRef<number[]>(new Array(60).fill(0));
   const timerRef = useRef<NodeJS.Timeout | null>(null);
@@ -245,13 +372,13 @@ export default function App() {
     } else {
       sound.playFizzle(); // Play penalty sound for tapping on wrong / fake statement
       setTapsCount((prev) => {
-        const newCount = Math.max(0, prev - 1);
+        const newCount = Math.max(0, prev - 10);
         // Decrease history speed score slightly
         const secondIndex = Math.min(59, Math.floor(elapsed));
-        historyRef.current[secondIndex] = Math.max(0, (historyRef.current[secondIndex] || 0) - 1);
+        historyRef.current[secondIndex] = Math.max(0, (historyRef.current[secondIndex] || 0) - 10);
          return newCount;
       });
-      particleText = "-1";
+      particleText = "-10";
       particleType = "negative";
     }
 
@@ -319,6 +446,18 @@ export default function App() {
   // Handle Spacebar and Secret Cheat Macro ('0') listening globally
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      // If user is focused on an input or textarea, or composition (IME) is in progress, ignore global hotkeys
+      const target = e.target as HTMLElement | null;
+      if (
+        e.isComposing ||
+        (target &&
+          (target.tagName === "INPUT" ||
+            target.tagName === "TEXTAREA" ||
+            target.isContentEditable))
+      ) {
+        return;
+      }
+
       // Prevent browser spacebar scroll behavior
       if (e.code === "Space") {
         e.preventDefault();
@@ -338,6 +477,17 @@ export default function App() {
     };
 
     const handleKeyUp = (e: KeyboardEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (
+        e.isComposing ||
+        (target &&
+          (target.tagName === "INPUT" ||
+            target.tagName === "TEXTAREA" ||
+            target.isContentEditable))
+      ) {
+        return;
+      }
+
       if (e.key === "0" || e.code === "Digit0" || e.code === "Numpad0") {
         stopMacro();
       }
@@ -367,8 +517,7 @@ export default function App() {
     historyRef.current = new Array(60).fill(0);
 
     // Shuffle and pick 4 random categories on every start / retry
-    const shuffled = [...QUIZ_DATA].sort(() => Math.random() - 0.5);
-    setCurrentQuizzes(shuffled.slice(0, 4));
+    setCurrentQuizzes(getRandomQuizzes());
 
     setGameState("countdown");
 
@@ -498,8 +647,8 @@ export default function App() {
       <header className="relative w-full max-w-4xl z-20 flex items-center justify-between mb-4 border-b border-slate-800 pb-4 bg-[#0a0f18]/30 px-4 py-3 rounded-xl backdrop-blur-sm">
         <div className="flex items-center gap-3">
           <div className="flex flex-col">
-            <span className="text-[10px] tracking-widest text-slate-400 uppercase font-bold">Operation</span>
-            <span className="text-xl font-black text-blue-500 tracking-tighter">SPACEBAR OVERDRIVE</span>
+            <span className="text-[10px] tracking-widest text-slate-400 uppercase font-bold">BATTLE ARENA</span>
+            <span className="text-xl font-black text-blue-500 tracking-tighter">{finalPlayerName} VS {finalBossName}</span>
           </div>
         </div>
 
@@ -551,9 +700,12 @@ export default function App() {
                 <Swords className="w-10 h-10 text-blue-500" />
               </div>
 
-              <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-white mb-2">
+              <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-white mb-1">
                 学力判定！60秒連打クイズバトル
               </h2>
+              <div className="text-cyan-400 font-bold text-sm md:text-base mb-4 tracking-wider">
+                {finalPlayerName} VS {finalBossName}
+              </div>
               <p className="text-slate-300 text-sm md:text-base max-w-md mx-auto leading-relaxed mb-6">
                 日常や学校で習うクイズが <span className="text-cyan-400 font-bold">計４問</span> (各15秒) 出題される！
                 <br />
@@ -586,6 +738,38 @@ export default function App() {
                       凄まじいペナルティ減点が発生！
                     </p>
                   </div>
+                </div>
+              </div>
+
+              {/* Player & Boss Name Inputs */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6 max-w-md mx-auto text-left">
+                <div>
+                  <label htmlFor="player-name-input" className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 text-center sm:text-left">
+                    プレイヤーの名前
+                  </label>
+                  <input
+                    id="player-name-input"
+                    type="text"
+                    value={playerName}
+                    onChange={handlePlayerNameChange}
+                    maxLength={15}
+                    className="w-full bg-[#05070a]/80 border border-slate-700 focus:border-blue-500 rounded-xl px-4 py-2.5 text-white text-center font-bold tracking-wide focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all placeholder-slate-600"
+                    placeholder="Player"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="boss-name-input" className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 text-center sm:text-left">
+                    BOSSの名前
+                  </label>
+                  <input
+                    id="boss-name-input"
+                    type="text"
+                    value={bossName}
+                    onChange={handleBossNameChange}
+                    maxLength={15}
+                    className="w-full bg-[#05070a]/80 border border-slate-700 focus:border-rose-500 rounded-xl px-4 py-2.5 text-white text-center font-bold tracking-wide focus:outline-none focus:ring-2 focus:ring-rose-500/20 transition-all placeholder-slate-600"
+                    placeholder="BOSS"
+                  />
                 </div>
               </div>
 
@@ -821,7 +1005,7 @@ export default function App() {
                       </div>
                     </div>
                     <span className="px-2 py-0.5 rounded text-[10px] bg-blue-950/60 border border-blue-800 text-blue-400 font-bold tracking-widest leading-none">
-                      HERO (YOU)
+                      {finalPlayerName}
                     </span>
                   </div>
 
@@ -846,7 +1030,7 @@ export default function App() {
                   <div className="flex flex-col items-center gap-2">
                     <EnemyCharacter state="charging" chargeCount={tapsCount} />
                     <span className="px-2 py-0.5 rounded text-[10px] bg-rose-950/60 border border-rose-900 text-rose-400 font-bold tracking-widest leading-none">
-                      BOSS ENEMY
+                      {finalBossName}
                     </span>
                   </div>
                 </div>
@@ -916,8 +1100,8 @@ export default function App() {
                     }
                     chargeCount={tapsCount}
                   />
-                  <span className="text-xs font-mono text-slate-400 mt-2 font-semibold">
-                    HERO Lvl.{tapsCount}
+                  <span className="text-xs text-slate-400 mt-2 font-semibold">
+                    {finalPlayerName} Lvl.{tapsCount}
                   </span>
                 </div>
 
@@ -1011,8 +1195,8 @@ export default function App() {
                     }
                     chargeCount={tapsCount}
                   />
-                  <span className="text-xs font-mono text-slate-400 mt-2 font-semibold">
-                    BOSS MASH-BOT
+                  <span className="text-xs text-slate-400 mt-2 font-semibold">
+                    {finalBossName}
                   </span>
                 </div>
 
@@ -1030,11 +1214,11 @@ export default function App() {
                       exit={{ opacity: 0, scale: 1.1 }}
                       className="text-center"
                     >
-                      <h3 className="text-xl md:text-2xl font-black font-mono tracking-wider text-yellow-500 animate-pulse">
-                        {tapsCount >= 100 ? "POWER PEAK ACHIEVED!" : "CHARGE INSUFFICIENT!"}
+                      <h3 className="text-xl md:text-2xl font-black tracking-wider text-yellow-500 animate-pulse">
+                        {tapsCount >= 100 ? "最大出力チャージ完了！" : "チャージエネルギー不足！"}
                       </h3>
-                      <p className="text-xs text-slate-400 mt-1 uppercase font-mono tracking-widest">
-                        {tapsCount >= 100 ? "Firing ultimate supercharged beam" : "Energy loop collapsing..."}
+                      <p className="text-xs text-slate-400 mt-1 tracking-widest">
+                        {tapsCount >= 100 ? `「${finalPlayerName}」が極大ビームを放つ！` : "エネルギー回路が崩壊していく..."}
                       </p>
                     </motion.div>
                   )}
@@ -1051,10 +1235,10 @@ export default function App() {
                       <h3 className={`text-2xl md:text-3xl font-black italic tracking-tighter ${
                         tapsCount >= 100 ? "text-cyan-400" : "text-rose-500"
                       }`}>
-                        {tapsCount >= 100 ? "CRITICAL HIT !!!" : "ENEMY STRIKES BACK !!!"}
+                        {tapsCount >= 100 ? "会心の一撃 !!!" : `「${finalBossName}」の猛反撃 !!!`}
                       </h3>
-                      <p className="text-xs text-slate-300 font-mono mt-1">
-                        {tapsCount >= 100 ? "BOSS SHELL FRACTURED" : "CRITICAL CHASSIS DAMAGE"}
+                      <p className="text-xs text-slate-300 mt-1">
+                        {tapsCount >= 100 ? `「${finalBossName}」の装甲が砕け散る！` : `「${finalPlayerName}」の機体が大破！`}
                       </p>
                     </motion.div>
                   )}
@@ -1072,8 +1256,8 @@ export default function App() {
                       }`}>
                         {tapsCount >= 100 ? "VICTORY !!!" : "DEFEAT !!!"}
                       </h3>
-                      <p className="text-xs text-slate-400 font-mono mt-1 tracking-widest uppercase">
-                        {tapsCount >= 100 ? "Enemy boss totally vaporized!" : "Fighter was incinerated..."}
+                      <p className="text-xs text-slate-400 mt-1 tracking-widest">
+                        {tapsCount >= 100 ? `「${finalBossName}」を完全に撃破した！` : `「${finalPlayerName}」は倒れた...`}
                       </p>
                     </motion.div>
                   )}
