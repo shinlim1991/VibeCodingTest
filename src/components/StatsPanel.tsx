@@ -5,9 +5,10 @@ interface StatsPanelProps {
   tapHistory: number[]; // Taps recorded per second (10 items)
   totalTaps: number;
   onRetry: () => void;
+  lang?: "ja" | "en";
 }
 
-export default function StatsPanel({ tapHistory, totalTaps, onRetry }: StatsPanelProps) {
+export default function StatsPanel({ tapHistory, totalTaps, onRetry, lang = "ja" }: StatsPanelProps) {
   const goal = 50;
   const passed = totalTaps >= goal;
   const duration = tapHistory.length || 60;
@@ -66,12 +67,12 @@ export default function StatsPanel({ tapHistory, totalTaps, onRetry }: StatsPane
           {passed ? (
             <>
               <CheckCircle className="w-3.5 h-3.5" />
-              <span>目標クリア (Target Cleared!)</span>
+              <span>{lang === "ja" ? "目標クリア (Target Cleared!)" : "Target Cleared!"}</span>
             </>
           ) : (
             <>
               <AlertTriangle className="w-3.5 h-3.5" />
-              <span>目標未達 (Target Failed)</span>
+              <span>{lang === "ja" ? "目標未達 (Target Failed)" : "Target Failed"}</span>
             </>
           )}
         </motion.div>
@@ -79,7 +80,11 @@ export default function StatsPanel({ tapHistory, totalTaps, onRetry }: StatsPane
         <h2 className="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-teal-400 via-emerald-400 to-indigo-400 bg-clip-text text-transparent">
           BATTLE RESULTS
         </h2>
-        <p className="text-slate-400 text-sm mt-1">60秒間（4問×15秒）のクイズ連打パーソナルリポート</p>
+        <p className="text-slate-400 text-sm mt-1">
+          {lang === "ja" 
+            ? "60秒間（4問×15秒）のクイズ連打パーソナルリポート" 
+            : "60-second (4 questions x 15s) quiz mash report"}
+        </p>
       </div>
 
       {/* Grid of Key Numerical Stats */}
@@ -91,11 +96,11 @@ export default function StatsPanel({ tapHistory, totalTaps, onRetry }: StatsPane
         >
           <div className="flex items-center gap-2 text-slate-400 text-xs font-semibold">
             <Flame className="w-4 h-4 text-orange-500 animate-pulse" />
-            <span>合計連打数 (Total Taps)</span>
+            <span>{lang === "ja" ? "合計連打数 (Total Taps)" : "Total Taps"}</span>
           </div>
           <div className="mt-2 flex items-baseline gap-1.5">
             <span className="text-4xl font-black text-white font-mono">{totalTaps}</span>
-            <span className="text-xs text-slate-400">/ 50 回</span>
+            <span className="text-xs text-slate-400">/ 50 {lang === "ja" ? "回" : "taps"}</span>
           </div>
           <div className="mt-2 w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
             <div
@@ -106,7 +111,7 @@ export default function StatsPanel({ tapHistory, totalTaps, onRetry }: StatsPane
             />
           </div>
           <span className="text-[10px] text-right text-slate-400 mt-1 font-mono">
-            目標の {percentOfGoal}% 達成
+            {lang === "ja" ? `目標の ${percentOfGoal}% 達成` : `${percentOfGoal}% of goal reached`}
           </span>
         </motion.div>
 
@@ -117,16 +122,18 @@ export default function StatsPanel({ tapHistory, totalTaps, onRetry }: StatsPane
         >
           <div className="flex items-center gap-2 text-slate-400 text-xs font-semibold">
             <Zap className="w-4 h-4 text-yellow-500" />
-            <span>平均連打速度 (Avg Speed)</span>
+            <span>{lang === "ja" ? "平均連打速度 (Avg Speed)" : "Avg Speed"}</span>
           </div>
           <div className="mt-2 flex items-baseline gap-1">
             <span className="text-4xl font-black text-white font-mono">{avgSpeed}</span>
-            <span className="text-xs text-slate-400">回/秒</span>
+            <span className="text-xs text-slate-400">{lang === "ja" ? "回/秒" : "taps/s"}</span>
           </div>
           <p className="text-[10px] text-slate-400 mt-1">
             {passed
-              ? "目標基準 (平均 0.5回/秒) をクリア！"
-              : `秒間あと ${(0.5 - parseFloat(avgSpeed)).toFixed(1)}回 叩ければクリア...`}
+              ? (lang === "ja" ? "目標基準 (平均 0.5回/秒) をクリア！" : "Cleared target baseline (avg 0.8 taps/s)!")
+              : lang === "ja"
+                ? `秒間あと ${(0.83 - parseFloat(avgSpeed)).toFixed(1)}回 叩ければクリア...`
+                : `Need ${(0.83 - parseFloat(avgSpeed)).toFixed(1)} more taps/s to clear...`}
           </p>
         </motion.div>
 
@@ -135,11 +142,11 @@ export default function StatsPanel({ tapHistory, totalTaps, onRetry }: StatsPane
           <div className="flex items-center gap-2">
             <Award className="w-4 h-4 text-cyan-400" />
             <div>
-              <p className="text-[10px] text-slate-400 leading-none">瞬間最高速度</p>
-              <p className="text-xs text-slate-300 font-semibold mt-1">Peak Speed</p>
+              <p className="text-[10px] text-slate-400 leading-none">{lang === "ja" ? "瞬間最高速度" : "Peak Speed"}</p>
+              <p className="text-xs text-slate-300 font-semibold mt-1">{lang === "ja" ? "Peak Speed" : "Top Taps/Sec"}</p>
             </div>
           </div>
-          <span className="text-2xl font-black text-cyan-300 font-mono">{peakSpeed} <span className="text-[10px] text-slate-400">回/秒</span></span>
+          <span className="text-2xl font-black text-cyan-300 font-mono">{peakSpeed} <span className="text-[10px] text-slate-400">{lang === "ja" ? "回/秒" : "t/s"}</span></span>
         </div>
 
         {/* COMBAT RATING */}
@@ -147,8 +154,8 @@ export default function StatsPanel({ tapHistory, totalTaps, onRetry }: StatsPane
           <div className="flex items-center gap-2">
             <AwardIcon className="w-4 h-4 text-purple-400" />
             <div>
-              <p className="text-[10px] text-slate-400 leading-none">戦闘力ランク</p>
-              <p className="text-xs text-slate-300 font-semibold mt-1">Combat Rating</p>
+              <p className="text-[10px] text-slate-400 leading-none">{lang === "ja" ? "戦闘力ランク" : "Combat Rating"}</p>
+              <p className="text-xs text-slate-300 font-semibold mt-1">{lang === "ja" ? "Combat Rating" : "Mash Rank"}</p>
             </div>
           </div>
           <span
@@ -184,9 +191,11 @@ export default function StatsPanel({ tapHistory, totalTaps, onRetry }: StatsPane
         <div className="flex justify-between items-center mb-3">
           <h3 className="text-xs font-semibold text-slate-400 flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-ping" />
-            <span>連打速度推移 (Taps Per Second Graph)</span>
+            <span>{lang === "ja" ? "連打速度推移 (Taps Per Second Graph)" : "Taps Per Second Graph"}</span>
           </h3>
-          <span className="text-[10px] text-slate-500 font-mono">x: 経過時間(秒), y: 秒間連打回数</span>
+          <span className="text-[10px] text-slate-500 font-mono">
+            {lang === "ja" ? "x: 経過時間(秒), y: 秒間連打回数" : "x: elapsed time (s), y: taps/sec"}
+          </span>
         </div>
 
         {/* Render responsive SVG Chart */}
@@ -315,7 +324,7 @@ export default function StatsPanel({ tapHistory, totalTaps, onRetry }: StatsPane
         className="w-full bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold py-4 px-6 rounded-xl shadow-lg transition-transform flex items-center justify-center gap-2"
       >
         <RotateCcw className="w-5 h-5" />
-        <span>もう一度挑戦する (Play Again)</span>
+        <span>{lang === "ja" ? "もう一度挑戦する (Play Again)" : "Play Again"}</span>
       </motion.button>
     </motion.div>
   );

@@ -41,7 +41,7 @@ interface QuizQuestion {
   slides: QuizSlide[];
 }
 
-const QUIZ_DATA: QuizQuestion[] = [
+const QUIZ_DATA_JA: QuizQuestion[] = [
   {
     category: "数学・算数 [Mathematics]",
     theme: "数式＆ロジックの正誤をジャッジせよ！",
@@ -62,16 +62,16 @@ const QUIZ_DATA: QuizQuestion[] = [
     category: "理科・科学 [Science]",
     theme: "宇宙と大自然の真実をジャッジせよ！",
     slides: [
-      { statement: "植物の光合成は、酸素を発生させる", isCorrect: true },
-      { statement: "水は氷になると体積が小さく（収縮）なる", isCorrect: false },
-      { statement: "光の進むスピードは、音よりも遅い", isCorrect: false },
-      { statement: "地球は太陽の周りを１年かけて公転している", isCorrect: true },
-      { statement: "金属は一般的に、熱や電気を通しやすい", isCorrect: true },
-      { statement: "昆虫の体は「頭部・胸部・腹部」の3つに分かれている", isCorrect: true },
-      { statement: "太陽系の惑星の中で、最も大きいのは「火星」である", isCorrect: false },
-      { statement: "水を加熱して沸騰させると、水蒸気という「気体」に変わる", isCorrect: true },
-      { statement: "アルカリ性の液体に赤色リトマス紙をつけると、青色に変わる", isCorrect: true },
-      { statement: "月は自ら光を放って輝いている", isCorrect: false }
+      { statement: "植物は、日光を浴びて行う光合成によって「酸素」を作り出す", isCorrect: true },
+      { statement: "水が凍って氷になると、体積が小さくなって縮む", isCorrect: false },
+      { statement: "光の伝わるスピードは、音のスピードよりも遅い", isCorrect: false },
+      { statement: "地球は、太陽のまわりを「1ヶ月」かけて1周している", isCorrect: false },
+      { statement: "鉄やアルミなどの金属は、電気や熱をよく通す", isCorrect: true },
+      { statement: "カブトムシなどの昆虫の体は、「あたま・むね・おなか」の3つに分かれている", isCorrect: true },
+      { statement: "太陽系の惑星の中で、最も大きいのは「地球」である", isCorrect: false },
+      { statement: "磁石は、同じ極（N極とN極）同士を近づけると、ピタッと引き寄せ合う", isCorrect: false },
+      { statement: "水を温めて沸騰させると、水蒸気という「気体」に変わる", isCorrect: true },
+      { statement: "月は、自分で光を放って輝いている星（恒星）である", isCorrect: false }
     ]
   },
   {
@@ -91,150 +91,226 @@ const QUIZ_DATA: QuizQuestion[] = [
     ]
   },
   {
-    category: "国語・英語・文学 [Language Arts]",
-    theme: "ことわざと言葉の法則をジャッジせよ！",
-    slides: [
-      { statement: "英語：『Apple』の日本語訳は「りんご」", isCorrect: true },
-      { statement: "ことわざ：棚から「たい焼き」が落ちてくる", isCorrect: false },
-      { statement: "「二兎を追う者は一兎をも得ず」は、欲張ると失敗するという意味", isCorrect: true },
-      { statement: "「こんにちは」を漢字にすると「今日輪」である", isCorrect: false },
-      { statement: "夏目漱石の代表作には『吾輩は猫である』がある", isCorrect: true },
-      { statement: "英語のアルファベットは全部で26文字である", isCorrect: true },
-      { statement: "「情けは人のためならず」は、人に親切にすると自分に良いことが返ってくるという意味である", isCorrect: true },
-      { statement: "漢字の「右」と「左」は、書き順の1画目が同じである", isCorrect: false },
-      { statement: "「 optical 」は「光学の、視覚の」という意味である", isCorrect: true },
-      { statement: "太宰治の『走れメロス』で、メロスが身代わりとして残した友人の名は「セリヌンティウス」である", isCorrect: true }
-    ]
-  },
-  {
-    category: "雑学・生活 [General Trivia]",
-    theme: "日常生活と身の回りの知恵をジャッジせよ！",
-    slides: [
-      { statement: "信号機の「緑色」は、法律上「青信号」と呼ぶ", isCorrect: true },
-      { statement: "かき氷のシロップは、実はすべて同じ味（香料だけ違う）である", isCorrect: true },
-      { statement: "救急車の電話番号は「110」番である", isCorrect: false },
-      { statement: "富士山は山梨県と静岡県の境界にまたがっている", isCorrect: true },
-      { statement: "千円札の肖像に描かれた野口英世は、細菌学者である", isCorrect: true },
-      { statement: "非常口の緑色のマークは、暗闇でも一番目立つ色として法律で決められている", isCorrect: true },
-      { statement: "日本の郵便番号はすべて「5桁」で構成されている", isCorrect: false },
-      { statement: "炭酸水に割り箸を入れると、泡が激しく発生する", isCorrect: true },
-      { statement: "オセロゲームの黒石と白石は、必ず黒が先手（先攻）である", isCorrect: true },
-      { statement: "シャンプーボトルの側面にギザギザがあるのは、リンスと区別するためである", isCorrect: true }
-    ]
-  },
-  {
     category: "テクノロジー [Technology & IT]",
     theme: "最新デジタル技術とPC知識をジャッジせよ！",
     slides: [
-      { statement: "Wi-Fi of「Wi」は「Wireless」の略語である", isCorrect: false },
-      { statement: "1キロバイト (KB) は、正確には 1000バイトである", isCorrect: false },
-      { statement: "PDFは、Adobe社が開発したファイル形式である", isCorrect: true },
-      { statement: "AI（人工知能）の『GPT』の「P」は Pre-trained の略である", isCorrect: true },
-      { statement: "キーボードの「F」と「J」キーには、ホームポジション用の突起がある", isCorrect: true },
-      { statement: "インターネットのアドレス「URL」の「L」は「Link」の略である", isCorrect: false },
-      { statement: "コンピュータのCPUは「中央演算処理装置」と呼ばれる", isCorrect: true },
-      { statement: "Bluetoothの「Blue」は、実在した青歯王（ハラルド・ブロタン）の名前に由来する", isCorrect: true },
-      { statement: "スマートフォンの「アプリ」は、「アプリケーション」の略称である", isCorrect: true },
-      { statement: "QRコードの「QR」は「Quick Response」の略である", isCorrect: true }
+      { statement: "Wi-Fi（ワイファイ）を使うには、必ず太い有線LANケーブルをスマホに直接繋ぐ必要がある", isCorrect: false },
+      { statement: "パソコンのキーボードで、最も横幅が長くて大きいのは「スペースキー」である", isCorrect: true },
+      { statement: "スマートフォンの「アプリ」は、「アプリケーション」という言葉を略したものである", isCorrect: true },
+      { statement: "キーボードのアルファベット配列で、一番上の左側から順番に文字を読むと「QWERTY（クワーティ）」と並んでいる", isCorrect: true },
+      { statement: "キーボードの「F」と「J」キーには、タイピングの基準位置（ホームポジション）を示すための小さな突起がある", isCorrect: true },
+      { statement: "インターネットの「URL」は、ホームページがどこにあるかを示す「ネット上の住所」のようなものである", isCorrect: true },
+      { statement: "コンピューターの脳にあたる「CPU」は、お米の炊き加減を調節するためだけの専用パーツである", isCorrect: false },
+      { statement: "Bluetooth（ブルートゥース）機能を使えば、イヤホンとスマホをケーブルで繋がなくても音楽が聴ける", isCorrect: true },
+      { statement: "電子メールの件名（タイトル）を書く欄には、本文をすべて丸ごと書き込まなければならない", isCorrect: false },
+      { statement: "スマホなどで使う「QRコード」は、3色のカラー信号だけで情報を伝える特別なコードである", isCorrect: false }
     ]
   },
   {
-    category: "スポーツ・健康 [Sports & Health]",
-    theme: "競技ルールと人体サイエンスをジャッジせよ！",
+    category: "ひらめき・パズル [Brain Teasers]",
+    theme: "誰でも解けるけどほんの少し頭を使う問題をジャッジせよ！",
     slides: [
-      { statement: "サッカーの1チームのピッチ上人数は11人である", isCorrect: true },
-      { statement: "大人の骨の数は、赤ちゃんの骨の数よりも多い", isCorrect: false },
-      { statement: "マラソンの正式な距離は 42.195 キロメートルである", isCorrect: true },
-      { statement: "人の体温は、通常、朝起きたときが最も高い", isCorrect: false },
-      { statement: "卓球（ピンポン）のサーブは、自分のコートに1回バウンドさせてから相手コートに入れる", isCorrect: true },
-      { statement: "血液の赤い色は、赤血球に含まれる「ヘモグロビン」によるものである", isCorrect: true },
-      { statement: "野球で「DH」とは、守備専門の選手（守備固め）のことである", isCorrect: false },
-      { statement: "人間の五感の中で、最も早く疲労を感じるのは「嗅覚（きゅうかく）」である", isCorrect: true },
-      { statement: "筋肉痛は、運動後すぐに発生するものしか存在しない", isCorrect: false },
-      { statement: "バスケットボールで3ポイントシュートが決まると、チームに3点が入る", isCorrect: true }
-    ]
-  },
-  {
-    category: "世界のグルメ [Food & Gastronomy]",
-    theme: "美味しい料理と食文化のルーツをジャッジせよ！",
-    slides: [
-      { statement: "「カルボナーラ」はイタリア語で「炭焼き職人風」という意味である", isCorrect: true },
-      { statement: "ジャガイモは、根ではなく「地下の茎（塊茎）」が肥大化したものである", isCorrect: true },
-      { statement: "「ナポリタン」スパゲッティは、イタリア・ナポリが発祥である", isCorrect: false },
-      { statement: "クロワッサンはフランス発祥ではなく、オーストリア発祥と言われている", isCorrect: true },
-      { statement: "トマトはもともと、南アメリカのアンデス山脈が原産である", isCorrect: true },
-      { statement: "コーヒー豆は、果実の「種（たね）」の部分である", isCorrect: true },
-      { statement: "中華料理の「麻婆豆腐」を考案したとされる人物は、顔にあばた（麻子）があったお婆さんである", isCorrect: true },
-      { statement: "マヨネーズの主原料は、卵白（白身）と酢と油である", isCorrect: false },
-      { statement: "お寿司の「ガリ」は、大根を甘酢に漬けたものである", isCorrect: false },
-      { statement: "世界三大珍味といえば「キャビア」「フォアグラ」「トリュフ」である", isCorrect: true }
-    ]
-  },
-  {
-    category: "地球・気象 [Earth & Weather]",
-    theme: "大気と異常気象 of 不思議をジャッジせよ！",
-    slides: [
-      { statement: "台風、ハリケーン、サイクロンは、どれも同じ熱帯低気圧の仲間である", isCorrect: true },
-      { statement: "雷が鳴っている時、高い木の下に避難するのは安全である", isCorrect: false },
-      { statement: "日本で観測される「黄色い砂（黄砂）」は、アメリカから飛来する", isCorrect: false },
-      { statement: "空気中で最も多い気体は、酸素ではなく窒素である", isCorrect: true },
-      { statement: "地球上で最も深い海溝は、太平洋にある「マリアナ海溝」である", isCorrect: true },
-      { statement: "砂漠とは、年間を通じて雨が全く降らない場所のことだけを指す", isCorrect: false },
-      { statement: "虹の色の並び順は、一番外側が「赤」で、一番内側が「紫」である", isCorrect: true },
-      { statement: "冬に雪が降るのは、雲の中の温度が氷点下（0度以下）だからである", isCorrect: true },
-      { statement: "雲は、水蒸気がそのまま目に見えるようになったものである", isCorrect: false },
-      { statement: "日本の「春分の日」と「秋分の日」は、昼と夜の長さがほぼ同じになる", isCorrect: true }
-    ]
-  },
-  {
-    category: "音楽・アート [Music & Art]",
-    theme: "芸術家と名作メロディにまつわる謎をジャッジせよ！",
-    slides: [
-      { statement: "ベートーヴェンの有名な交響曲第5番の副題は「運命」である", isCorrect: true },
-      { statement: "ピアノの鍵盤は、白鍵と黒鍵を合わせて全部で100鍵ある", isCorrect: false },
-      { statement: "レオナルド・ダ・ヴィンチの代表作「モナ・リザ」には眉毛が描かれていない", isCorrect: true },
-      { statement: "ヴァイオリンの弦は、全部で5本ある", isCorrect: false },
-      { statement: "世界三大リスニング（クラシック三大B）とは、バッハ、ベートーヴェン、ブラームスである", isCorrect: true },
-      { statement: "モーツァルトはオーストリア出身の作曲家である", isCorrect: true },
-      { statement: "ゴッホの有名な絵画『ひまわり』は、生涯で1枚しか描かれなかった", isCorrect: false },
-      { statement: "ピカソのフルネームは、非常に長い（10語以上ある）", isCorrect: true },
-      { statement: "「ド・レ・ミ」の音名は、イタリア語が発祥である", isCorrect: true },
-      { statement: "彫刻『考える人』で有名なフランスの彫刻家は「ロダン」である", isCorrect: true }
-    ]
-  },
-  {
-    category: "動物・生き物 [Animals & Nature]",
-    theme: "地球に生きる奇妙な生物たちをジャッジせよ！",
-    slides: [
-      { statement: "カタツムリには歯が約1万本以上生えている", isCorrect: true },
-      { statement: "ダチョウの脳みそは、彼らの目玉よりも大きい", isCorrect: false },
-      { statement: "クジラは哺乳類ではなく、魚類の仲間である", isCorrect: false },
-      { statement: "コアラの主食であるユーカリの葉には、毒素が含まれている", isCorrect: true },
-      { statement: "ペンギンは南半球だけでなく、北極（北半球の極地）にも野生の個体が生息している", isCorrect: false },
-      { statement: "カメレオンの皮膚の色が変わるのは、主に周囲の景色に擬態するためだけである", isCorrect: false },
-      { statement: "チーターの走るスピードは、時速100キロメートルを超えることがある", isCorrect: true },
-      { statement: "タコには心臓が3つ、脳が9つある", isCorrect: true },
-      { statement: "キリンの首の骨（頚椎）の数は、人間（7個）よりも多い", isCorrect: false },
-      { statement: "クラゲの体の約95％以上は、水分でできている", isCorrect: true }
-    ]
-  },
-  {
-    category: "日本史・世界史 [History]",
-    theme: "激動の歴史と英雄たちの足跡をジャッジせよ！",
-    slides: [
-      { statement: "江戸幕府をひらいた初代将軍は徳川家康である", isCorrect: true },
-      { statement: "大化の改新（645年）の中心人物は中大兄皇子と中臣鎌足である", isCorrect: true },
-      { statement: "ナポレオンが生まれた島は、イギリス領のエルバ島である", isCorrect: false },
-      { statement: "日本の昭和時代は、全部で70年間続いた", isCorrect: false },
-      { statement: "邪馬台国の女王「卑弥呼」が中国の魏に使いを送った歴史がある", isCorrect: true },
-      { statement: "ピラミッドを建設した古代エジプトの人々は、労働者であり奴隷ではなかったという説が有力である", isCorrect: true },
-      { statement: "コロンブスがアメリカ大陸に到達した年は「1492年」である", isCorrect: true },
-      { statement: "フランス革命で処刑されたフランス国王は「ルイ14世」である", isCorrect: false },
-      { statement: "日本の初代内閣総理大臣は「伊藤博文」である", isCorrect: true },
-      { statement: "ベルリンの壁が崩壊したのは「1989年」である", isCorrect: true }
+      { statement: "1年は12ヶ月あるが、そのうち「31日」まである月は全部で7ヶ月ある", isCorrect: true },
+      { statement: "一般的なサイコロの向かい合う面の目の数を足すと、どこを足しても必ず「7」になります", isCorrect: true },
+      { statement: "ジョーカーを除いたトランプの山札（ハート、ダイヤ、クローバー、スペード）は全部で52枚ある", isCorrect: true },
+      { statement: "漢字の「凸」と「凹」は、どちらも画数は同じ「5画」である", isCorrect: true },
+      { statement: "1、2、3、4、5をすべて掛け合わせると（1×2×3×4×5）、答えは「100」以上になる", isCorrect: true },
+      { statement: "「一月(January)」から「十二月(December)」の中で、英語名にしたときに最も文字数が短いのは「May (5月)」である", isCorrect: true },
+      { statement: "日本で現在使われている硬貨（1円〜500円）の中で、穴が空いているのは「50円玉」の1種類だけである", isCorrect: false },
+      { statement: "1時間は「3600秒」である", isCorrect: true },
+      { statement: "十二支（干支）の12の生き物の中で、唯一実在しない架空の生物は「龍（辰）」である", isCorrect: true },
+      { statement: "アルファベットをAから順に並べたとき、「S」の次に来る文字は「T」である", isCorrect: true }
     ]
   }
 ];
+
+const QUIZ_DATA_EN: QuizQuestion[] = [
+  {
+    category: "Mathematics",
+    theme: "Judge the correctness of formulas & logic!",
+    slides: [
+      { statement: "5 + 7 = 12", isCorrect: true },
+      { statement: "9 × 8 = 71", isCorrect: false },
+      { statement: "150 ÷ 3 = 50", isCorrect: true },
+      { statement: "3⁴ (3 to the power of 4) = 64", isCorrect: false },
+      { statement: "Summing all integers from 1 to 10 equals 55", isCorrect: true },
+      { statement: "The sum of interior angles of a triangle is 180 degrees", isCorrect: true },
+      { statement: "Adding an even number and an odd number always results in an even number", isCorrect: false },
+      { statement: "0 is included in 'positive integers (natural numbers)'", isCorrect: false },
+      { statement: "The diameter of a circle with a 5cm radius is 10cm", isCorrect: true },
+      { statement: "One dozen is exactly 12 items", isCorrect: true }
+    ]
+  },
+  {
+    category: "Science",
+    theme: "Judge the truth of space and nature!",
+    slides: [
+      { statement: "Plants produce oxygen through photosynthesis when exposed to sunlight", isCorrect: true },
+      { statement: "When water freezes into ice, its volume decreases and it shrinks", isCorrect: false },
+      { statement: "The speed of light is slower than the speed of sound", isCorrect: false },
+      { statement: "Earth completes one orbit around the Sun in exactly one month", isCorrect: false },
+      { statement: "Metals like iron and aluminum conduct electricity and heat well", isCorrect: true },
+      { statement: "An insect's body, such as a beetle, is divided into three parts: head, thorax, and abdomen", isCorrect: true },
+      { statement: "Earth is the largest planet in our solar system", isCorrect: false },
+      { statement: "Magnets attract each other when two of the same poles (N and N) are brought close together", isCorrect: false },
+      { statement: "Heating water to a boil turns it into a gas called water vapor", isCorrect: true },
+      { statement: "The Moon is a star that shines by emitting its own light", isCorrect: false }
+    ]
+  },
+  {
+    category: "Social Studies & Geography",
+    theme: "Judge historical, cultural, and world common sense!",
+    slides: [
+      { statement: "The total number of prefectures in Japan is 47", isCorrect: true },
+      { statement: "The capital of the United States of America is New York", isCorrect: false },
+      { statement: "The climate near the equator is cold all year round", isCorrect: false },
+      { statement: "The capital of France is Paris", isCorrect: true },
+      { statement: "The three principles of the Japanese Constitution are sovereignty of the people, respect for human rights, and pacifism", isCorrect: true },
+      { statement: "The ratio of land to ocean on Earth is approximately 7:3", isCorrect: false },
+      { statement: "The United Kingdom (UK) is an island nation", isCorrect: true },
+      { statement: "Hokkaido has the largest area among Japan's prefectures", isCorrect: true },
+      { statement: "The capital of Australia is Sydney", isCorrect: false },
+      { statement: "The city through which the Prime Meridian (0 degrees longitude) passes is London, UK", isCorrect: true }
+    ]
+  },
+  {
+    category: "Technology & IT",
+    theme: "Judge modern digital technology and PC knowledge!",
+    slides: [
+      { statement: "To use Wi-Fi, you must connect a thick wired LAN cable directly to your smartphone", isCorrect: false },
+      { statement: "On a computer keyboard, the widest and largest key is the spacebar", isCorrect: true },
+      { statement: "The smartphone term 'App' is short for 'Application'", isCorrect: true },
+      { statement: "Reading the alphabet layout on a keyboard from the top-left spells 'QWERTY'", isCorrect: true },
+      { statement: "The 'F' and 'J' keys on a keyboard have a small bump to guide typing home positions", isCorrect: true },
+      { statement: "An internet 'URL' is like a web address showing where a website is located", isCorrect: true },
+      { statement: "The CPU, which is the brain of a computer, is a dedicated part only for adjusting how rice is cooked", isCorrect: false },
+      { statement: "Using Bluetooth allows you to listen to music without connecting earphones with a cable", isCorrect: true },
+      { statement: "You must write the entire email body within the Subject (title) field", isCorrect: false },
+      { statement: "A QR code used on smartphones carries information using only three-color signals", isCorrect: false }
+    ]
+  },
+  {
+    category: "Brain Teasers & Puzzles",
+    theme: "Solve these puzzles with a bit of brainpower!",
+    slides: [
+      { statement: "There are 12 months in a year, and 7 of them have exactly 31 days", isCorrect: true },
+      { statement: "Opposing sides of a standard die always add up to exactly 7", isCorrect: true },
+      { statement: "A standard deck of playing cards excluding jokers consists of 52 cards", isCorrect: true },
+      { statement: "The kanji '凸' and '凹' both have the same stroke count of 5", isCorrect: true },
+      { statement: "Multiplying 1, 2, 3, 4, 5 together (1x2x3x4x5) results in a number 100 or higher", isCorrect: true },
+      { statement: "Among the twelve months from January to December, May has the shortest English name", isCorrect: true },
+      { statement: "Among currently circulated coins in Japan, the 50-yen coin is the only one with a hole", isCorrect: false },
+      { statement: "One hour is equal to exactly 3600 seconds", isCorrect: true },
+      { statement: "Among the 12 animals of the Chinese zodiac, the only mythical creature is the Dragon", isCorrect: true },
+      { statement: "In the English alphabet, the letter that comes after 'S' is 'T'", isCorrect: true }
+    ]
+  }
+];
+
+const UI_TEXTS = {
+  ja: {
+    title: "学力判定！60秒連打クイズバトル",
+    subPlay: "バトルスタート (SPACE / CLICK)",
+    subRules: "スペースキー または どこでもクリックで開始・連打可能",
+    macroTip: "💡 [裏メカニクス] 戦闘中に数字の 0 キー長押し or 連打で連続スペース入力マクロが発動！",
+    rulesHeader1: "成功条件: 【勝者】",
+    rulesBody1: "合計50回以上の正解連打。正解中のみ連打を繋いでブースト！",
+    rulesHeader2: "失敗の罠: 【敗北】",
+    rulesBody2: "誤答ステートメントを連打すると凄まじいペナルティ減点が発生！",
+    playerName: "プレイヤーの名前",
+    bossName: "BOSSの名前",
+    timeLimit: "制限時間",
+    hiScore: "HI-SCORE",
+    goal: "GOAL",
+    overdrive: "OVERDRIVE ACTIVE",
+    combatSystemLoading: "戦闘システム起動中...",
+    prepare: "準備を整えろ！",
+    timeRemaining: "残り時間",
+    charge: "チャージ",
+    keyTaps: "キー連打数",
+    correctBonus: "正解ボーナス！",
+    wrongPenalty: "不正解ペナルティ！",
+    categoryLabel: "カテゴリー",
+    themeLabel: "テーマ",
+    spaceToHit: "スペースキー または ここを猛連打！",
+    activeCombo: "COMBO!",
+    victory: "VICTORY !!",
+    defeat: "DEFEAT...",
+    battleFinished: "BATTLE FINISHED !!",
+    revealStats: "戦績レポートを表示 (Reveal Stats)",
+    soundMute: "ミュート",
+    soundUnmute: "ミュート解除",
+    explanation1: "日常や学校で習うクイズが 計４問 (各15秒) 出題される！",
+    explanation2: "提示される文章が「正しい」時だけスペースキーを猛連打せよ！",
+    explanation3: "間違っている時に叩くと減点（マイナス）されるぞ！",
+    sectionProgress: "セクション内",
+    questionNum: "問目 / 4",
+    maxCharge: "最大出力チャージ完了！",
+    insufficientCharge: "チャージエネルギー不足！",
+    beamAttack: "が極大ビームを放つ！",
+    collapseCircuit: "エネルギー回路が崩壊していく...",
+    criticalHit: "会心の一撃 !!!",
+    retaliation: "の猛反撃 !!!",
+    armorDestroyed: "の装甲が砕け散る！",
+    shipWrecked: "の機体が大破！",
+    completeVictory: "を完全に撃破した！",
+    fallen: "は倒れた...",
+    simulationComplete: "シミュレーションが完了しました。",
+    telemetryReady: "BATTLE TELEMETRY READY",
+    cinematicPlaying: "シネマティックアニメーション再生中... (Skip available on completion)"
+  },
+  en: {
+    title: "Academic Judge! 60s Mash Quiz Battle",
+    subPlay: "BATTLE START (SPACE / CLICK)",
+    subRules: "Press Spacebar or Click anywhere to start and mash",
+    macroTip: "💡 [Secret Macro] Hold or press '0' key during battle to trigger auto-mash spacebar input!",
+    rulesHeader1: "Victory Condition",
+    rulesBody1: "Reach 50+ total correct mashes. Mash while correct to trigger combo boosts!",
+    rulesHeader2: "Defeat Hazard",
+    rulesBody2: "Mashing during a false statement triggers a heavy score penalty!",
+    playerName: "Player Name",
+    bossName: "BOSS Name",
+    timeLimit: "Time Limit",
+    hiScore: "HI-SCORE",
+    goal: "GOAL",
+    overdrive: "OVERDRIVE ACTIVE",
+    combatSystemLoading: "Combat System Loading...",
+    prepare: "Get Ready!",
+    timeRemaining: "Time Remaining",
+    charge: "CHARGE",
+    keyTaps: "KEY TAPS",
+    correctBonus: "Correct Bonus!",
+    wrongPenalty: "Incorrect Penalty!",
+    categoryLabel: "Category",
+    themeLabel: "Theme",
+    spaceToHit: "Mash Spacebar or Click here!",
+    activeCombo: "COMBO!",
+    victory: "VICTORY !!",
+    defeat: "DEFEAT...",
+    battleFinished: "BATTLE FINISHED !!",
+    revealStats: "Show Battle Report (Reveal Stats)",
+    soundMute: "Mute Sound",
+    soundUnmute: "Unmute Sound",
+    explanation1: "4 academic quiz questions (15s each) will be presented!",
+    explanation2: "Mash the spacebar ONLY when the statement is correct!",
+    explanation3: "Mashing on incorrect statements will penalize your score!",
+    sectionProgress: "Question",
+    questionNum: "of 4 in Section",
+    maxCharge: "Max Charge Complete!",
+    insufficientCharge: "Insufficient Energy Charge!",
+    beamAttack: "fires a devastating beam!",
+    collapseCircuit: "The energy circuits are collapsing...",
+    criticalHit: "CRITICAL HIT !!!",
+    retaliation: "'s counterattack !!!",
+    armorDestroyed: "'s armor shattered!",
+    shipWrecked: "'s vessel collapsed!",
+    completeVictory: "has been completely obliterated!",
+    fallen: "has fallen...",
+    simulationComplete: "Combat simulation completed.",
+    telemetryReady: "BATTLE TELEMETRY READY",
+    cinematicPlaying: "Cinematic animation playing... (Skip available on completion)"
+  }
+};
 
 function shuffleArray<T>(array: T[]): T[] {
   const arr = [...array];
@@ -245,8 +321,9 @@ function shuffleArray<T>(array: T[]): T[] {
   return arr;
 }
 
-const getRandomQuizzes = (): QuizQuestion[] => {
-  const shuffledCategories = shuffleArray(QUIZ_DATA);
+const getRandomQuizzes = (lang: "ja" | "en"): QuizQuestion[] => {
+  const data = lang === "ja" ? QUIZ_DATA_JA : QUIZ_DATA_EN;
+  const shuffledCategories = shuffleArray(data);
   return shuffledCategories.slice(0, 4).map((q) => {
     const shuffledSlides = shuffleArray(q.slides);
     return {
@@ -258,8 +335,26 @@ const getRandomQuizzes = (): QuizQuestion[] => {
 
 export default function App() {
   const [gameState, setGameState] = useState<"idle" | "countdown" | "playing" | "battle_animation" | "result">("idle");
+  const [selectedLang, setSelectedLang] = useState<"ja" | "en">(() => {
+    try {
+      const stored = localStorage.getItem("spacebar_language");
+      if (stored === "ja" || stored === "en") {
+        return stored;
+      }
+    } catch {}
+    return "ja";
+  });
   const [currentQuizzes, setCurrentQuizzes] = useState<QuizQuestion[]>(() => {
-    return getRandomQuizzes();
+    const initialLang = (() => {
+      try {
+        const stored = localStorage.getItem("spacebar_language");
+        if (stored === "ja" || stored === "en") {
+          return stored as "ja" | "en";
+        }
+      } catch {}
+      return "ja";
+    })();
+    return getRandomQuizzes(initialLang);
   });
   const [tapsCount, setTapsCount] = useState<number>(0);
   const [timeLeft, setTimeLeft] = useState<number>(60.0);
@@ -517,7 +612,7 @@ export default function App() {
     historyRef.current = new Array(60).fill(0);
 
     // Shuffle and pick 4 random categories on every start / retry
-    setCurrentQuizzes(getRandomQuizzes());
+    setCurrentQuizzes(getRandomQuizzes(selectedLang));
 
     setGameState("countdown");
 
@@ -696,34 +791,64 @@ export default function App() {
               {/* Retro decorative framing glow */}
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 via-indigo-600 to-sky-500" />
               
-              <div className="mb-6 inline-flex p-3 bg-[#05070a]/90 rounded-full border border-slate-800 ring-4 ring-blue-500/10 animate-[pulse_2.5s_infinite]">
+              <div className="mb-4 inline-flex p-3 bg-[#05070a]/90 rounded-full border border-slate-800 ring-4 ring-blue-500/10 animate-[pulse_2.5s_infinite]">
                 <Swords className="w-10 h-10 text-blue-500" />
               </div>
 
-              <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-white mb-1">
-                学力判定！60秒連打クイズバトル
+              {/* Language Selection Tabs */}
+              <div className="flex justify-center gap-3 mb-5 max-w-xs mx-auto">
+                <button
+                  id="lang-select-ja"
+                  onClick={() => {
+                    setSelectedLang("ja");
+                    try { localStorage.setItem("spacebar_language", "ja"); } catch(_) {}
+                    setCurrentQuizzes(getRandomQuizzes("ja"));
+                  }}
+                  className={`flex-1 py-1.5 px-3 rounded-lg border text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
+                    selectedLang === "ja"
+                      ? "bg-blue-600/20 border-blue-500 text-blue-400 shadow-[0_0_10px_rgba(59,130,246,0.2)] font-black"
+                      : "bg-[#05070a]/60 border-slate-800 text-slate-500 hover:text-slate-350 hover:border-slate-700"
+                  }`}
+                >
+                  <span>🇯🇵 日本語</span>
+                </button>
+                <button
+                  id="lang-select-en"
+                  onClick={() => {
+                    setSelectedLang("en");
+                    try { localStorage.setItem("spacebar_language", "en"); } catch(_) {}
+                    setCurrentQuizzes(getRandomQuizzes("en"));
+                  }}
+                  className={`flex-1 py-1.5 px-3 rounded-lg border text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
+                    selectedLang === "en"
+                      ? "bg-blue-600/20 border-blue-500 text-blue-400 shadow-[0_0_10px_rgba(59,130,246,0.2)] font-black"
+                      : "bg-[#05070a]/60 border-slate-800 text-slate-500 hover:text-slate-350 hover:border-slate-700"
+                  }`}
+                >
+                  <span>🇺🇸 English</span>
+                </button>
+              </div>
+
+              <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-white mb-1">
+                {UI_TEXTS[selectedLang].title}
               </h2>
               <div className="text-cyan-400 font-bold text-sm md:text-base mb-4 tracking-wider">
                 {finalPlayerName} VS {finalBossName}
               </div>
-              <p className="text-slate-300 text-sm md:text-base max-w-md mx-auto leading-relaxed mb-6">
-                日常や学校で習うクイズが <span className="text-cyan-400 font-bold">計４問</span> (各15秒) 出題される！
-                <br />
-                提示される文章が<span className="text-emerald-400 font-bold">「正しい」時だけスペースキーを猛連打</span>せよ！
-                <br />
-                <span className="text-rose-400 font-bold">間違っている時に叩くと減点（マイナス）</span>されるぞ！
-              </p>
+              <div className="text-slate-300 text-xs md:text-sm max-w-md mx-auto leading-relaxed mb-6 space-y-1">
+                <p>{UI_TEXTS[selectedLang].explanation1}</p>
+                <p>{UI_TEXTS[selectedLang].explanation2}</p>
+                <p className="text-rose-400 font-bold">{UI_TEXTS[selectedLang].explanation3}</p>
+              </div>
 
               {/* Targets and Rules Cards */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 text-left max-w-lg mx-auto">
                 <div className="bg-[#05070a]/80 rounded-xl border border-slate-850 p-4 flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
                   <div>
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-slate-300">成功条件: 【勝者】</h4>
-                    <p className="text-xs text-slate-400 mt-1 font-mono">
-                      合計50回以上の正解連打。
-                      <br />
-                      正解中のみ連打を繋いでブースト！
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-slate-300">{UI_TEXTS[selectedLang].rulesHeader1}</h4>
+                    <p className="text-[11px] text-slate-400 mt-1 font-mono leading-relaxed">
+                      {UI_TEXTS[selectedLang].rulesBody1}
                     </p>
                   </div>
                 </div>
@@ -731,11 +856,9 @@ export default function App() {
                 <div className="bg-[#05070a]/80 rounded-xl border border-slate-850 p-4 flex items-start gap-3">
                   <XCircle className="w-5 h-5 text-rose-500 shrink-0 mt-0.5" />
                   <div>
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-slate-300">失敗の罠: 【敗北】</h4>
-                    <p className="text-xs text-slate-400 mt-1 font-mono">
-                      誤答ステートメントを連打すると
-                      <br />
-                      凄まじいペナルティ減点が発生！
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-slate-300">{UI_TEXTS[selectedLang].rulesHeader2}</h4>
+                    <p className="text-[11px] text-slate-400 mt-1 font-mono leading-relaxed">
+                      {UI_TEXTS[selectedLang].rulesBody2}
                     </p>
                   </div>
                 </div>
@@ -745,7 +868,7 @@ export default function App() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6 max-w-md mx-auto text-left">
                 <div>
                   <label htmlFor="player-name-input" className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 text-center sm:text-left">
-                    プレイヤーの名前
+                    {UI_TEXTS[selectedLang].playerName}
                   </label>
                   <input
                     id="player-name-input"
@@ -753,13 +876,13 @@ export default function App() {
                     value={playerName}
                     onChange={handlePlayerNameChange}
                     maxLength={15}
-                    className="w-full bg-[#05070a]/80 border border-slate-700 focus:border-blue-500 rounded-xl px-4 py-2.5 text-white text-center font-bold tracking-wide focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all placeholder-slate-600"
+                    className="w-full bg-[#05070a]/80 border border-slate-700 focus:border-blue-500 rounded-xl px-4 py-2 text-white text-center font-bold tracking-wide focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all placeholder-slate-600 text-xs"
                     placeholder="Player"
                   />
                 </div>
                 <div>
                   <label htmlFor="boss-name-input" className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 text-center sm:text-left">
-                    BOSSの名前
+                    {UI_TEXTS[selectedLang].bossName}
                   </label>
                   <input
                     id="boss-name-input"
@@ -767,7 +890,7 @@ export default function App() {
                     value={bossName}
                     onChange={handleBossNameChange}
                     maxLength={15}
-                    className="w-full bg-[#05070a]/80 border border-slate-700 focus:border-rose-500 rounded-xl px-4 py-2.5 text-white text-center font-bold tracking-wide focus:outline-none focus:ring-2 focus:ring-rose-500/20 transition-all placeholder-slate-600"
+                    className="w-full bg-[#05070a]/80 border border-slate-700 focus:border-rose-500 rounded-xl px-4 py-2 text-white text-center font-bold tracking-wide focus:outline-none focus:ring-2 focus:ring-rose-500/20 transition-all placeholder-slate-600 text-xs"
                     placeholder="BOSS"
                   />
                 </div>
@@ -780,19 +903,18 @@ export default function App() {
                   onClick={startGame}
                   whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(59,130,246,0.3)" }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-10 py-4 rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-indigo-800 hover:from-blue-500 hover:to-indigo-500 text-white font-black text-lg shadow-lg tracking-widest flex items-center justify-center gap-2 cursor-pointer"
+                  className="px-10 py-3.5 rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-indigo-800 hover:from-blue-500 hover:to-indigo-500 text-white font-black text-base shadow-lg tracking-widest flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <Play className="fill-white w-5 h-5" />
-                  <span>バトルスタート (SPACE / CLICK)</span>
+                  <span>{UI_TEXTS[selectedLang].subPlay}</span>
                 </motion.button>
                 <div className="flex flex-col items-center gap-2 mt-1 select-none">
                   <div className="flex items-center gap-1.5 text-xs text-slate-500 font-mono opacity-85">
                     <Keyboard className="w-4 h-4" />
-                    <span>スペースキー または どこでもクリックで開始・連打可能</span>
+                    <span>{UI_TEXTS[selectedLang].subRules}</span>
                   </div>
                   <div className="text-[10px] text-slate-600 font-mono opacity-60 hover:opacity-100 transition-opacity duration-300 flex items-center gap-1 px-3 py-1 bg-slate-950/40 border border-slate-900 rounded-lg" title="Secret macro command activated">
-                    <span className="text-cyan-600 font-bold">💡 [裏メカニクス]</span>
-                    <span>戦闘中に数字の <span className="text-cyan-500 font-bold font-sans">0</span> キー長押し or 連打で連続スペース入力マクロが発動！</span>
+                    <span>{UI_TEXTS[selectedLang].macroTip}</span>
                   </div>
                 </div>
               </div>
@@ -808,7 +930,7 @@ export default function App() {
               exit={{ opacity: 0, scale: 1.2 }}
               className="flex flex-col items-center justify-center h-64 text-center select-none"
             >
-              <p className="text-xs uppercase tracking-widest text-slate-500 mb-2 font-mono">Combat System Loading</p>
+              <p className="text-xs uppercase tracking-widest text-slate-500 mb-2 font-mono">{UI_TEXTS[selectedLang].combatSystemLoading}</p>
               <AnimatePresence mode="popLayout">
                 <motion.div
                   key={countdown}
@@ -829,7 +951,7 @@ export default function App() {
                   )}
                 </motion.div>
               </AnimatePresence>
-              <p className="text-sm text-slate-400 mt-6 tracking-wide animate-pulse">準備を整えろ！</p>
+              <p className="text-sm text-slate-400 mt-6 tracking-wide animate-pulse">{UI_TEXTS[selectedLang].prepare}</p>
             </motion.div>
           )}
 
@@ -929,7 +1051,7 @@ export default function App() {
                       {currentQuestion.theme}
                     </span>
                     <span className="text-[10px] tracking-wider font-mono font-bold text-cyan-400">
-                      セクション内 {currentSlideIndex + 1}問目 / 4
+                      {UI_TEXTS[selectedLang].sectionProgress} {currentSlideIndex + 1} {UI_TEXTS[selectedLang].questionNum}
                     </span>
                   </div>
 
@@ -1048,7 +1170,7 @@ export default function App() {
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
                   
                   <span className="text-sm font-extrabold tracking-widest text-blue-400 group-hover:text-cyan-300 transition-colors uppercase">
-                    スペースキー または ここを猛連打！
+                    {UI_TEXTS[selectedLang].spaceToHit}
                   </span>
                   <div className="flex items-center gap-2 text-xs font-mono text-slate-500">
                     <Zap className="w-3.5 h-3.5 text-blue-400 animate-bounce" />
@@ -1215,10 +1337,10 @@ export default function App() {
                       className="text-center"
                     >
                       <h3 className="text-xl md:text-2xl font-black tracking-wider text-yellow-500 animate-pulse">
-                        {tapsCount >= 100 ? "最大出力チャージ完了！" : "チャージエネルギー不足！"}
+                        {tapsCount >= 100 ? UI_TEXTS[selectedLang].maxCharge : UI_TEXTS[selectedLang].insufficientCharge}
                       </h3>
                       <p className="text-xs text-slate-400 mt-1 tracking-widest">
-                        {tapsCount >= 100 ? `「${finalPlayerName}」が極大ビームを放つ！` : "エネルギー回路が崩壊していく..."}
+                        {tapsCount >= 100 ? `「${finalPlayerName}」${UI_TEXTS[selectedLang].beamAttack}` : UI_TEXTS[selectedLang].collapseCircuit}
                       </p>
                     </motion.div>
                   )}
@@ -1235,10 +1357,10 @@ export default function App() {
                       <h3 className={`text-2xl md:text-3xl font-black italic tracking-tighter ${
                         tapsCount >= 100 ? "text-cyan-400" : "text-rose-500"
                       }`}>
-                        {tapsCount >= 100 ? "会心の一撃 !!!" : `「${finalBossName}」の猛反撃 !!!`}
+                        {tapsCount >= 100 ? UI_TEXTS[selectedLang].criticalHit : `「${finalBossName}」${UI_TEXTS[selectedLang].retaliation}`}
                       </h3>
                       <p className="text-xs text-slate-300 mt-1">
-                        {tapsCount >= 100 ? `「${finalBossName}」の装甲が砕け散る！` : `「${finalPlayerName}」の機体が大破！`}
+                        {tapsCount >= 100 ? `「${finalBossName}」${UI_TEXTS[selectedLang].armorDestroyed}` : `「${finalPlayerName}」${UI_TEXTS[selectedLang].shipWrecked}`}
                       </p>
                     </motion.div>
                   )}
@@ -1257,7 +1379,7 @@ export default function App() {
                         {tapsCount >= 100 ? "VICTORY !!!" : "DEFEAT !!!"}
                       </h3>
                       <p className="text-xs text-slate-400 mt-1 tracking-widest">
-                        {tapsCount >= 100 ? `「${finalBossName}」を完全に撃破した！` : `「${finalPlayerName}」は倒れた...`}
+                        {tapsCount >= 100 ? `「${finalBossName}」${UI_TEXTS[selectedLang].completeVictory}` : `「${finalPlayerName}」${UI_TEXTS[selectedLang].fallen}`}
                       </p>
                     </motion.div>
                   )}
@@ -1270,8 +1392,8 @@ export default function App() {
                       animate={{ opacity: 1 }}
                       className="flex flex-col items-center justify-center"
                     >
-                      <p className="text-sm font-semibold text-indigo-300">シミュレーションが完了しました。</p>
-                      <p className="text-[10px] text-slate-500 font-mono mt-0.5 uppercase tracking-wider">Battle telemetry ready</p>
+                      <p className="text-sm font-semibold text-indigo-300">{UI_TEXTS[selectedLang].simulationComplete}</p>
+                      <p className="text-[10px] text-slate-500 font-mono mt-0.5 uppercase tracking-wider">{UI_TEXTS[selectedLang].telemetryReady}</p>
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -1289,12 +1411,12 @@ export default function App() {
                     whileTap={{ scale: 0.95 }}
                     className="w-full bg-gradient-to-r from-teal-500 via-emerald-500 to-indigo-500 hover:from-teal-400 hover:to-indigo-400 text-slate-950 font-black tracking-wider py-4 px-6 rounded-xl shadow-lg transition-transform flex items-center justify-center gap-2"
                   >
-                    <span>戦績レポートを表示 (Reveal Stats)</span>
+                    <span>{UI_TEXTS[selectedLang].revealStats}</span>
                     <ChevronRight className="w-5 h-5 shrink-0" />
                   </motion.button>
                 ) : (
                   <div className="text-xs text-slate-500 font-mono italic animate-pulse">
-                    シネマティックアニメーション再生中... (Skip available on completion)
+                    {UI_TEXTS[selectedLang].cinematicPlaying}
                   </div>
                 )}
               </div>
@@ -1314,6 +1436,7 @@ export default function App() {
                 totalTaps={tapsCount}
                 tapHistory={historyRef.current}
                 onRetry={startGame}
+                lang={selectedLang}
               />
             </motion.div>
           )}
